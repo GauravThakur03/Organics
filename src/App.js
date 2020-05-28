@@ -11,6 +11,8 @@ import {createStore} from './store/store-factory';
 import NavBar from "./components/Navbar";
 import Home from "./components/Home";
 import Footer from "./components/Footer";
+import Cart from "./components/Cart";
+import Orders from "./components/Orders";
 
 const store = createStore();
 
@@ -20,6 +22,9 @@ function App() {
       <NavBar/>
       	<Switch>
       		<Route exact path="/home" component={Home} />
+          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/orders" component={Orders} />
+          <Route exact path="/" component={Home} />
       	</Switch>
       <Footer />
     </>

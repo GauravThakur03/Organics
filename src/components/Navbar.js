@@ -6,9 +6,9 @@ import styled from "styled-components";
 const NavBar = () => {
   return (
     <NavWrapper className="navbar navbar-expand-md navbar-dark fixed-top">
-      <a className="navbar-brand" href="#">
+      <Link to="/" className="navbar-brand">
         Organics Store
-      </a>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -24,9 +24,9 @@ const NavBar = () => {
       <div className="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul className="navbar-nav ml-40">
           <li className="nav-item active">
-            <a className="nav-link" href="#">
+            <Link to="/" className="nav-link">
               Home <span className="sr-only">(current)</span>
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#">
@@ -34,9 +34,8 @@ const NavBar = () => {
             </a>
           </li>
         </ul>
-      
       </div>
-      <Link to="cart" className="ml-auto">
+      <Link to="orders" className="ml-auto">
         <ButtonContainer>
           <span className="mr-2">
             <i className="fas fa-truck"></i>
