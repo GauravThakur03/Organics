@@ -1,4 +1,4 @@
-const SET_PARAMS = 'SET_PARAMS';
+import { SET_PRODUCTS } from '../../actionTypes';
 
 const defaultState = [];
 
@@ -8,7 +8,7 @@ function setSelection(state, action) {
 
 export default function (state = defaultState, action) {
     const actionHandlers = {
-        [SET_PARAMS]: setSelection
+        [SET_PRODUCTS]: setSelection
     };
     const reducer = actionHandlers[action.type];
 

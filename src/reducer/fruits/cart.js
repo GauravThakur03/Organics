@@ -1,4 +1,4 @@
-const SET_CART = 'SET_CART';
+import { SET_CART } from '../../actionTypes';
 
 const defaultState = {
 	count: 0,
