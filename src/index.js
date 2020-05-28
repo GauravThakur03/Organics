@@ -9,15 +9,13 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-d
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-  <React.StrictMode>
       <Router>
       	<Route
             path="/"
             component={App}
         />
         <Redirect to="/home" />
-      </Router>
-  </React.StrictMode>,
+      </Router>,
   document.getElementById("root")
 );
 

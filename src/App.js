@@ -9,20 +9,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {createStore} from './store/store-factory';
 
 import NavBar from "./components/Navbar";
-import Home from "./components/Home";
+import Home from "./components/HomeConnector";
 import Footer from "./components/Footer";
 
 const store = createStore();
 
-function App() {
+function App(props) {
   return (
-    <>
-      <NavBar/>
-      	<Switch>
-      		<Route exact path="/home" component={Home} />
-      	</Switch>
-      <Footer />
-    </>
+    <Provider store={store}>
+    	<>
+	      <NavBar/>
+	      	<Switch>
+	      		<Route exact path="/home" component={Home} />
+	      	</Switch>
+	      <Footer />
+      	</>
+    </Provider>
   );
 }
 

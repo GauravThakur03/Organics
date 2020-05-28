@@ -1,4 +1,4 @@
-const GET_TRACK = 'GET_TRACK';
+import { GET_TRACK } from '../../actionTypes';
 
 const defaultState = [];
 

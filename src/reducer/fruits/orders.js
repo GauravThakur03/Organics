@@ -1,4 +1,4 @@
-const GET_ORDERS = 'GET_ORDERS';
+import { GET_ORDERS } from '../../actionTypes';
 
 const defaultState = [];
 

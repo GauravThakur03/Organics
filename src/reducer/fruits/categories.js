@@ -1,4 +1,4 @@
-const SET_CATEGORY = 'SET_CATEGORY';
+import { SET_CATEGORY } from '../../actionTypes';
 
 const defaultState = [];
 

@@ -1,7 +1,7 @@
 import t from 'tcomb';
 
 const Category = t.struct({
-    catID: t.String,
+    catID: t.union([t.String, t.Number]),
     catName: t.String,
     prodCount: t.Number
 }, 'Category');

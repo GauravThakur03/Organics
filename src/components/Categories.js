@@ -52,5 +52,4 @@ const CategoriesWrapper = styled.div`
       font-size: 3rem;
       top: 0;
     }
-  }
-`;
+  }`;
