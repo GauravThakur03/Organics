@@ -9,6 +9,7 @@ const Product = t.struct({
     prodPic: t.String,
     prodPrice: t.Number,
     prodQuant: t.Number,
+    prodUnit: t.String,
     varID: t.String,
     varName: t.String
 }, 'Product');
