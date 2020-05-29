@@ -23,15 +23,20 @@ const NavBar = () => {
 
       <div className="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul className="navbar-nav ml-40">
-          <li className="nav-item active">
+          <li className="nav-item">
             <Link to="/" className="nav-link">
               Home <span className="sr-only">(current)</span>
             </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+          <Link to="/aboutus" className="nav-link">
               About us
-            </a>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/contactus" className="nav-link">
+              Contact us
+            </Link>
           </li>
         </ul>
       </div>
@@ -59,8 +64,4 @@ export default NavBar;
 
 const NavWrapper = styled.nav`
   background: var(--mainGreen);
-  .nav-link {
-    color: var(--mainWhite) !important;
-    text-transform: capitalize;
-  }
 `;

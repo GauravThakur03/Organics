@@ -7,3 +7,6 @@
 body{
   background: var(--mainWhite) !important;
 }
+.min-height{
+  min-height:calc(100vh - 140px);
+}

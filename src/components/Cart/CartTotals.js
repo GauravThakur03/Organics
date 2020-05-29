@@ -21,7 +21,7 @@ const CartTotals = ({ values, history }) => {
             <strong>{cartTotal}</strong>
           </h5>
           <button
-            class="btn btn-outline-success text-uppercase mb-3 mt-2 px-5"
+            className="btn btn-outline-success text-uppercase mb-3 mt-2 px-5"
             type="button"
           >
             Checkout
