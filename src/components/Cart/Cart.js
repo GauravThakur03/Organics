@@ -6,7 +6,7 @@ import CartTotals from "./CartTotals";
 
 const Cart = () => {
   return (
-    <section className="container-fluid">
+    <section className="container-fluid py-4">
       {cart.length ? (
         <>
           <CartColumns />

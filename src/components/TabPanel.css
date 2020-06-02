@@ -1,0 +1,21 @@
+.tab-panel .nav {
+  position: sticky;
+  top: 56px;
+  z-index: 1020;
+  background:var(--mainGreen);
+  box-shadow: 1px 1px 5px -1px #474747;
+  
+}
+
+.tab-panel .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    color: green !important;
+    background-color: var(--mainWhite) !important;
+    border-color:rgb(243, 243, 243);
+    border-bottom-color: transparent;
+}
+.tab-panel .nav-tabs .nav-item{
+    color:var(--mainWhite);
+}
+.tab-panel .nav-tabs {
+    border-bottom:none !important;
+}

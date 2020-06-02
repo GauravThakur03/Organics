@@ -18,7 +18,9 @@ const OrderColumns = () => {
             <div className="col-10 mx-auto col-lg-2">
                 <p className="text-uppercase">Additional Info</p>
             </div>
-            
+            <div className="col-10 mx-auto col-lg-2">
+                <p className="text-uppercase">cancel order</p>
+            </div>
         </div>
     </div>
      );

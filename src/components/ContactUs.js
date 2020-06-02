@@ -1,7 +1,7 @@
 import React from "react";
 const ContactUs = () => {
   return (
-    <div className="container-fluid min-height">
+    <div className="container-fluid min-height py-4">
       <div className="container-fluid bg-grey">
         <h2 className="text-center mb-2">CONTACT</h2>
         <div className="row">

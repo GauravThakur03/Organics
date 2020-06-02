@@ -1,26 +1,30 @@
-import React , { Component } from 'react';
-import Categories from './Categories';
-import ProductList from './ProductList';
+import React, { Component } from "react";
+import Categories from "./Categories";
+import ProductList from "./ProductList";
+import AppCarousel from "./AppCarousel";
+import TabPanel from "./TabPanel";
 
 class Home extends Component {
-    componentDidMount() {
-        this.props.loadCategories();
-    }
+  componentDidMount() {
+    this.props.loadCategories();
+  }
 
-    render() {
-        return (  
-            <main className="container-fluid" role="main">
-                <div className="row">
-                    <div className="col-md-3 px-0 border-right d-flex flex-column">
-                        <Categories/>
-                    </div>
-                    <div className="col-md-9 py-2 pl-3">
-                        <ProductList/>
-                    </div>
-                </div>
-            </main>
-        );    
-    }
+  render() {
+    return (
+      <main className="container-fluid" role="main">
+        <div className="row">
+          <div className="col-12 px-0">
+            <AppCarousel />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12 px-0">
+            <TabPanel/>
+          </div>
+        </div>
+      </main>
+    );
+  }
 }
- 
+
 export default Home;

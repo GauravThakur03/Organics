@@ -2,7 +2,7 @@ import React from "react";
 const AboutUs = () => {
   return (
     <>
-      <div className="container-fluid min-height">
+      <div className="container-fluid min-height py-4">
         <div className="row">
           <div className="col-sm-8">
             <h2>About Oraganics Store</h2>

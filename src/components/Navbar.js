@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../logo.svg";
 import { ButtonContainer } from "./Button";
 import styled from "styled-components";
+import SelectLanguage from "./SelectLanguage";
 const NavBar = () => {
   return (
     <NavWrapper className="navbar navbar-expand-md navbar-dark fixed-top">
@@ -29,7 +30,7 @@ const NavBar = () => {
             </Link>
           </li>
           <li className="nav-item">
-          <Link to="/aboutus" className="nav-link">
+            <Link to="/aboutus" className="nav-link">
               About us
             </Link>
           </li>
@@ -40,21 +41,22 @@ const NavBar = () => {
           </li>
         </ul>
       </div>
+      <SelectLanguage className="ml-auto" />
       <Link to="orders" className="ml-auto">
-        <ButtonContainer>
+        <button className="btn btn-success mr-2">
           <span className="mr-2">
             <i className="fas fa-truck"></i>
           </span>
           Track Order
-        </ButtonContainer>
+        </button>
       </Link>
       <Link to="cart" className="ml-auto">
-        <ButtonContainer>
+        <button className="btn btn-success mr-2">
           <span className="mr-2">
-            <i className="fas fa-cart-plus"></i>
+            <i className="fas fa-shopping-cart"></i>
           </span>
           My Cart
-        </ButtonContainer>
+        </button>
       </Link>
     </NavWrapper>
   );
