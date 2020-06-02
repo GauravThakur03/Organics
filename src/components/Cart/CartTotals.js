@@ -20,12 +20,15 @@ const CartTotals = ({ values, history }) => {
             <span className="text-title">total: &#8377;</span>
             <strong>{cartTotal}</strong>
           </h5>
-          <button
-            className="btn btn-outline-success text-uppercase mb-3 mt-2 px-5"
-            type="button"
-          >
-            Checkout
-          </button><br/>
+          <Link to="/checkout">
+            <button
+              className="btn btn-outline-success text-uppercase mb-3 mt-2 px-5"
+              type="button"
+            >
+              Checkout
+            </button>
+          </Link>
+          <br />
           <Link to="/">
             <button
               className="btn btn-outline-danger text-uppercase mb-3 px-5"
