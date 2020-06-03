@@ -16,7 +16,8 @@ const ContactUs = () => {
             </p>
             <p>
               <span className="glyphicon glyphicon-envelope"></span>{" "}
-              myemail@something.com
+              
+              <a href="mailto:support@mamidikayalu.com">support@mamidikayalu.com</a>
             </p>
           </div>
           <div className="col-sm-7">

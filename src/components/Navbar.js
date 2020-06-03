@@ -7,8 +7,15 @@ import SelectLanguage from "./SelectLanguage";
 const NavBar = () => {
   return (
     <NavWrapper className="navbar navbar-expand-md navbar-dark fixed-top">
-      <Link to="/" className="navbar-brand">
-        Organics Store
+      <Link to="/" className="navbar-brand d-flex">
+        <img
+          src="icons/logo.png"
+          alt="mamidikayalu.com"
+          className="mr-2"
+          width="32"
+          height="32"
+        />
+        MAMIDIKAYALU
       </Link>
       <button
         className="navbar-toggler"
