@@ -19,7 +19,7 @@ class Home extends Component {
         </div>
         <div className="row">
           <div className="col-12 px-0">
-            <TabPanel/>
+            {this.props.categories.length && <TabPanel categories={this.props.categories}/>}
           </div>
         </div>
       </main>

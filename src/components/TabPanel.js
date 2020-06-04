@@ -1,21 +1,23 @@
 import React from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import ProductList from "./ProductList";
-import "./TabPanel.css"
 
-const TabPanel = () => {
+import "./TabPanel.css";
+
+
+const TabPanel = ({categories}) => {
   return (
     <div className="tab-panel">
-      <Tabs defaultActiveKey="fruits" id="uncontrolled-tab-example">
-        <Tab eventKey="fruits" title="Fruits">
-          <ProductList />
-        </Tab>
-        <Tab eventKey="pickles" title="Pickles">
-          <ProductList />
-        </Tab>
-        <Tab eventKey="vegetables" title="Vegetables">
-          <ProductList />
-        </Tab>
+      <Tabs defaultActiveKey={categories[0].catID} id="uncontrolled-tab-example">
+        {
+            categories.map((category) => {
+                return (
+                  <Tab eventKey={category.catID} title={category.catName} key={category.catID}>
+                    <ProductList products={category.products}/>
+                  </Tab>
+                )
+            })
+        }
       </Tabs>
     </div>
   );
