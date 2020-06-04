@@ -10,3 +10,8 @@ body{
 .min-height{
   min-height:calc(100vh - 140px);
 }
+.bg-img{
+  background-image: url('images/banner4.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
