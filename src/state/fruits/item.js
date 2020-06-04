@@ -2,7 +2,7 @@ import t from 'tcomb';
 
 const Item = t.struct({
     prodDesc: t.String,
-    prodId: t.String,
+    prodID: t.union([t.String, t.Number]),
     prodName: t.String,
     prodPic: t.String,
     prodPrice: t.Number,
