@@ -1,12 +1,12 @@
-import { SET_CATEGORY, SET_CART, INCREASE_QTY, DECREASE_QTY, CLEAR_CART, REMOVE_CART_ITEM} from '../actionTypes';
-import { loadCategories, loadOrders } from "../services/organic";
+import { SET_CATEGORY, SET_CART, INCREASE_QTY, DECREASE_QTY, CLEAR_CART, REMOVE_CART_ITEM, SET_ORDERS, GET_ORDERS} from '../actionTypes';
+import { loadCategories, loadOrders } from '../services/organic';
 
 export function categories() {
 	return (dispatch) => {
 	    return loadCategories()
 	        .then(({category}) => {
 	            dispatch({
-	            	type: 'SET_CATEGORY',
+	            	type: SET_CATEGORY,
 	            	category
 	            })
 	        })
@@ -14,21 +14,6 @@ export function categories() {
 	            return Promise.reject(error);
 	        });
 	}
-}
-
-export function orders() {
-  return (dispatch) => {
-    return loadOrders()
-      .then(({orders}) => {
-        dispatch({
-          type: 'SET_ORDERS',
-          orders,
-        });
-      })
-      .catch((error) => {
-        return Promise.reject(error);
-      });
-  };
 }
 
 export function addToCart(cartItem) {	
@@ -65,3 +50,17 @@ export function removeFromCart(prodID) {
 	};
 }
 
+export function orders() {
+  return (dispatch) => {
+    return loadOrders()
+      .then(({orders}) => {
+        dispatch({
+          type: SET_ORDERS,
+          orders,
+        });
+      })
+      .catch((error) => {
+        return Promise.reject(error);
+      });
+  };
+}
