@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         loadCategories: () => {
-            dispatch(categories());
+            dispatch(categories(dispatch));
         }
     };
 }

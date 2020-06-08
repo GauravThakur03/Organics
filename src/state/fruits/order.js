@@ -10,8 +10,8 @@ const Order = t.struct({
     items: t.list(Item),
     landmark: t.String,
     orderDate: t.String,
-    orderID: t.Number,
-    pinCode: t.String,
+    orderID: t.String,
+    pinCode: t.Number,
     state: t.String,
     status: t.String
 }, 'Order');

@@ -1,40 +1,47 @@
-import React from "react";
+import React, {Component} from "react";
 import CheckoutItem from "./CheckoutItem";
 
-const Checkout = () => {
-  return (
-    <div className="container">
+class Checkout extends Component {
+  componentDidMount() {
+    this.props.loadOrders();
+  }
+
+  render() {
+    const order = this.props.orders && this.props.orders.length ? this.props.orders[0]:null;
+    return (
+      <div className="container">
       <div className="row py-5">
         <div className="col-md-4 order-md-2 mb-4">
           <h4 className="d-flex justify-content-between align-items-center mb-3">
             <span className="text-muted">Your cart</span>
-            <span className="badge badge-secondary badge-pill">3</span>
+    <span className="badge badge-secondary badge-pill">{this.props.cart.count}</span>
           </h4>
           <ul className="list-group mb-3">
             
-            {cart.map(item=><CheckoutItem item={item}/>)}
+            {this.props.cart.cartItems.length && this.props.cart.cartItems.map((item,index)=><CheckoutItem key={index} item={item}/>)}
             <li className="list-group-item d-flex justify-content-between">
               <span>Sub Total</span>
-              <strong>&#8377; 285</strong>
+              <strong>&#8377; 175</strong>
             </li>
             <li className="list-group-item d-flex justify-content-between">
               <span>GST</span>
-              <strong>&#8377; 28</strong>
+              <strong>&#8377; 17</strong>
             </li>
             <li className="list-group-item d-flex justify-content-between">
               <span>Total</span>
-              <strong>&#8377; 313</strong>
+              <strong>&#8377; 192</strong>
             </li>
           </ul>
         </div>
         <div className="col-md-8 order-md-1">
           <h4 className="mb-3">Delivery address</h4>
           <address className="text-muted">
-            Yash Technologies,
-            <br />
-            Raheja IT Park, Building 20, Raheja Mind Space, Madhapur, Madhapur,
-            Mindspace, HUDA Techno Enclave, HITEC City, Hyderabad, Telangana
-            500081
+           <span>{order ? order.address1 : ''}</span><br/>
+           <span>{order ? order.address2 : ''}</span><br/>
+           <span>{order ? order.landmark : ''}</span><br/>
+           <span>{order ? order.city : ''}</span><br/>
+           <span>{order ? order.state : ''}</span><br/>
+           <span>{order ? order.pinCode : ''}</span><br/>
           </address>
 
           <hr className="mb-4" />
@@ -153,10 +160,12 @@ const Checkout = () => {
         </div>
       </div>
     </div>
-  );
-};
+    );
+  }
+}
 
 export default Checkout;
+
 
 const cart = [
   {

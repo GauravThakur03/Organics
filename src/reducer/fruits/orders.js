@@ -1,4 +1,4 @@
-import { GET_ORDERS } from '../../actionTypes';
+import { SET_ORDERS } from '../../actionTypes';
 
 const defaultState = [];
 
@@ -8,9 +8,8 @@ function setOrders(state, action) {
 
 export default function (state = defaultState, action) {
     const actionHandlers = {
-        [GET_ORDERS]: setOrders
+        [SET_ORDERS]: setOrders
     };
     const reducer = actionHandlers[action.type];
-
     return reducer ? reducer(state, action) : state;
 }
