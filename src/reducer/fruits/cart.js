@@ -1,26 +1,56 @@
-import { SET_CART } from '../../actionTypes';
+import { SET_CART, INCREASE_QTY, DECREASE_QTY, CLEAR_CART, REMOVE_CART_ITEM } from '../../actionTypes';
 
 const defaultState = {
-	count: 1,
-	cartItems: [
-		{
-          "prodID": 1,
-          "prodName": "Banganapalli Mango",
-          "prodPic": "img/product-1.png",
-          "prodPrice": 175,
-          "prodDesc": "Lorem ipsum dolor amet offal butcher quinoa sustainable gastropub, echo park actually green juice sriracha paleo. Brooklyn sriracha semiotics, DIY coloring book mixtape craft beer sartorial hella blue bottle. Tote bag wolf authentic try-hard put a bird on it mumblecore. Unicorn lumbersexual master cleanse blog hella VHS, vaporware sartorial church-key cardigan single-origin coffee lo-fi organic asymmetrical. Tax idermy semiotics celiac stumptown scenester normcore, ethical helvetica photo booth gentrify.",
-          "prodQuant": 1
-        }
-	]
+	count: 0,
+	cartItems: []
 };
 
-function setCart(state, action) {
-    return  action.cart;
+function addItem(state, action) {
+    return  {
+      ...state,
+      count: state.count + 1,
+      cartItems: [...state.cartItems, action.cartItem]
+    };
+}
+
+function removeItem(state, action) {
+    const cartItems = state.cartItems.filter(item => item.prodID !== action.prodID);
+    const quantity = state.cartItems.find(item => item.prodID === action.prodID).prodQuant;
+
+    return  {
+      ...state,
+      count: state.count - quantity,
+      cartItems
+    };
+}
+
+function increaseQuantity(state, action) {
+  return {
+        ...state,
+        count: state.count + 1,
+        cartItems: state.cartItems.map(item => item.prodID === action.prodID ? { ...item, prodQuant: item.prodQuant + 1 } : item) 
+    };  
+}
+
+function decreaseQuantity(state, action) {
+  return {
+        ...state,
+        count: state.count - 1,
+        cartItems: state.cartItems.map(item => item.prodID === action.prodID ? { ...item, prodQuant: item.prodQuant - 1 } : item) 
+    };  
+}
+
+function clearCart() {
+  return defaultState;
 }
 
 export default function (state = defaultState, action) {
     const actionHandlers = {
-        [SET_CART]: setCart
+        [SET_CART]: addItem,
+        [INCREASE_QTY]: increaseQuantity,
+        [DECREASE_QTY]: decreaseQuantity,
+        [CLEAR_CART]: clearCart,
+        [REMOVE_CART_ITEM]: removeItem
     };
     const reducer = actionHandlers[action.type];
 

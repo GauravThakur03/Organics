@@ -2,9 +2,9 @@ import React from "react";
 const AboutUs = () => {
   return (
     <>
-      <div class="bg-img position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
-        <div class="col-md-5 p-lg-5 mx-auto my-5">
-          <h1 class="display-4 font-weight-normal text-white">MAMIDIKAYALU</h1>
+      <div className="bg-img position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+        <div className="col-md-5 p-lg-5 mx-auto my-5">
+          <h1 className="display-4 font-weight-normal text-white">MAMIDIKAYALU</h1>
           <p class="lead font-weight-normal"></p>
         </div>
       </div>

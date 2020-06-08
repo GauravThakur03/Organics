@@ -31,7 +31,6 @@ function App(props) {
           <Route exact path="/contactus" component={ContactUs} />
           <Route exact path="/orders" component={Orders} />
           <Route exact path="/checkout" component={Checkout} />
-          <Route exact path="/" component={Home} />
         </Switch>
         <Footer />
       </>
