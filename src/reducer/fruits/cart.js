@@ -33,11 +33,17 @@ function increaseQuantity(state, action) {
 }
 
 function decreaseQuantity(state, action) {
-  return {
+  const product = state.cartItems.find(item => item.prodID === action.prodID);
+  
+  if (product.prodQuant > 1) {
+    return {
         ...state,
         count: state.count - 1,
         cartItems: state.cartItems.map(item => item.prodID === action.prodID ? { ...item, prodQuant: item.prodQuant - 1 } : item) 
-    };  
+    };
+  } else {
+    return removeItem(state, action)
+  }
 }
 
 function clearCart() {

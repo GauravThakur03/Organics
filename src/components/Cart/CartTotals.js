@@ -1,12 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ButtonContainer } from "../Button";
+import { cartTotal } from '../../utils';
 
-const CartTotals = ({ values, history,items }) => {
-  const total = items.reduce((sum, item) => {
-      sum = sum + item.prodQuant * item.prodPrice;
-      return sum;
-  },0);
+const CartTotals = ({ values, history,items, clearCart }) => {
+  const total = cartTotal(items);
 
   return (
     <div className="container">
@@ -29,11 +27,11 @@ const CartTotals = ({ values, history,items }) => {
             </button>
           </Link>
           <br />
-          <Link to="/">
+          <Link to="/home">
             <button
               className="btn btn-outline-danger text-uppercase mb-3 px-5"
               type="button"
-              onClick={() => {}}
+              onClick={() => clearCart()}
             >
               clear cart
             </button>
