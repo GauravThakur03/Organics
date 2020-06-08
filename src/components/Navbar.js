@@ -7,7 +7,7 @@ import SelectLanguage from "./SelectLanguage";
 const NavBar = () => {
   return (
     <NavWrapper className="navbar navbar-expand-md navbar-dark fixed-top">
-      <Link to="/" className="navbar-brand d-flex">
+      <Link to="/home" className="navbar-brand d-flex">
         <img
           src="icons/logo.png"
           alt="mamidikayalu.com"
@@ -32,7 +32,7 @@ const NavBar = () => {
       <div className="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul className="navbar-nav ml-40">
           <li className="nav-item">
-            <Link to="/" className="nav-link">
+            <Link to="/home" className="nav-link">
               Home <span className="sr-only">(current)</span>
             </Link>
           </li>

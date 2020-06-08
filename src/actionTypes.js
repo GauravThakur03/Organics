@@ -3,3 +3,7 @@ export const SET_CART = 'SET_CART';
 export const GET_ORDERS = 'GET_ORDERS';
 export const SET_PRODUCTS = 'SET_PRODUCTS';
 export const GET_TRACK = 'GET_TRACK';
+export const DECREASE_QTY = 'DECREASE_QTY';
+export const INCREASE_QTY = 'INCREASE_QTY';
+export const CLEAR_CART = 'CLEAR_CART';
+export const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';

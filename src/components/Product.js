@@ -3,9 +3,17 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Product = ({product, cart}) => {
-  const { prodID, prodName, prodPic, prodPrice } = product;
+const Product = ({product, cart, addToCart}) => {
+  const { prodID, prodName, prodPic, prodPrice, prodDesc } = product;
   const inCart = cart.cartItems.some(product => product.prodID === prodID);
+  const cartItem = {
+    prodID,
+    prodName, 
+    prodPic, 
+    prodPrice,
+    prodDesc,
+    prodQuant: 1
+  };
 
   return (
       <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
@@ -19,13 +27,14 @@ const Product = ({product, cart}) => {
             <button
               className="cart-btn"
               disabled={inCart}
+              onClick={() => addToCart(cartItem)}
             >
               {inCart ? (
                 <p className="text-capitalize mb-0" disabled>
                   in cart
                 </p>
               ) : (
-                <i className="fas fa-cart-plus" />
+                <i className="fas fa-cart-plus"/>
               )}
             </button>
           </div>

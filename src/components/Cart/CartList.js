@@ -1,12 +1,14 @@
 import React from "react";
 import CartItem from "./CartItem";
 
-const CartList = ({ cart }) => {
+const CartList = ({ cartItems, ...props }) => {
   return (
     <div className="caontainer-fluid">
-      {cart.map((item) => {
-        return <CartItem key={item.id} product={item} />;
-      })}
+      {
+      	cartItems.map((item) => {
+        	return <CartItem key={item.prodID} product={item} {...props}/>;
+      	})
+      }
     </div>
   );
 };
