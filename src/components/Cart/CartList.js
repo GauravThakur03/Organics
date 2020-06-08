@@ -6,7 +6,7 @@ const CartList = ({ cartItems, ...props }) => {
     <div className="caontainer-fluid">
       {
       	cartItems.map((item) => {
-        	return <CartItem key={item.prodID} product={item} {...props}/>;
+        	return item.prodQuant ? <CartItem key={item.prodID} product={item} {...props}/> : null;
       	})
       }
     </div>

@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import CheckoutItem from "./CheckoutItem";
+import { cartTotal, GST } from '../../utils';
 
 class Checkout extends Component {
   componentDidMount() {
@@ -8,28 +9,30 @@ class Checkout extends Component {
 
   render() {
     const order = this.props.orders && this.props.orders.length ? this.props.orders[0]:null;
+    const total = cartTotal(this.props.cart.cartItems);
+
     return (
       <div className="container">
       <div className="row py-5">
         <div className="col-md-4 order-md-2 mb-4">
           <h4 className="d-flex justify-content-between align-items-center mb-3">
             <span className="text-muted">Your cart</span>
-    <span className="badge badge-secondary badge-pill">{this.props.cart.count}</span>
+            <span className="badge badge-secondary badge-pill">{this.props.cart.count}</span>
           </h4>
           <ul className="list-group mb-3">
             
             {this.props.cart.cartItems.length && this.props.cart.cartItems.map((item,index)=><CheckoutItem key={index} item={item}/>)}
             <li className="list-group-item d-flex justify-content-between">
               <span>Sub Total</span>
-              <strong>&#8377; 175</strong>
+              <strong>{total}</strong>
             </li>
             <li className="list-group-item d-flex justify-content-between">
               <span>GST</span>
-              <strong>&#8377; 17</strong>
+              <strong>{GST}</strong>
             </li>
             <li className="list-group-item d-flex justify-content-between">
               <span>Total</span>
-              <strong>&#8377; 192</strong>
+              <strong>{total + GST}</strong>
             </li>
           </ul>
         </div>
@@ -55,10 +58,9 @@ class Checkout extends Component {
                 name="paymentMethod"
                 type="radio"
                 className="custom-control-input"
-                checked=""
                 required=""
               />
-              <label className="custom-control-label" for="credit">
+              <label className="custom-control-label" htmlFor="credit">
                 Cash / Card on delivery
               </label>
             </div>
@@ -68,10 +70,9 @@ class Checkout extends Component {
                 name="paymentMethod"
                 type="radio"
                 className="custom-control-input"
-                checked=""
                 required=""
               />
-              <label className="custom-control-label" for="credit">
+              <label className="custom-control-label" htmlFor="credit">
                 Credit card
               </label>
             </div>
@@ -83,7 +84,7 @@ class Checkout extends Component {
                 className="custom-control-input"
                 required=""
               />
-              <label className="custom-control-label" for="debit">
+              <label className="custom-control-label" htmlFor="debit">
                 Debit card
               </label>
             </div>
@@ -95,14 +96,14 @@ class Checkout extends Component {
                 className="custom-control-input"
                 required=""
               />
-              <label className="custom-control-label" for="paypal">
+              <label className="custom-control-label" htmlFor="paypal">
                 Paypal
               </label>
             </div>
           </div>
           <div className="row">
             <div className="col-md-6 mb-3">
-              <label for="cc-name">Name on card</label>
+              <label htmlFor="cc-name">Name on card</label>
               <input
                 type="text"
                 className="form-control"
@@ -116,7 +117,7 @@ class Checkout extends Component {
               <div className="invalid-feedback">Name on card is required</div>
             </div>
             <div className="col-md-6 mb-3">
-              <label for="cc-number">Credit card number</label>
+              <label htmlFor="cc-number">Credit card number</label>
               <input
                 type="text"
                 className="form-control"
@@ -131,7 +132,7 @@ class Checkout extends Component {
           </div>
           <div className="row">
             <div className="col-md-3 mb-3">
-              <label for="cc-expiration">Expiration</label>
+              <label htmlFor="cc-expiration">Expiration</label>
               <input
                 type="text"
                 className="form-control"
@@ -142,7 +143,7 @@ class Checkout extends Component {
               <div className="invalid-feedback">Expiration date required</div>
             </div>
             <div className="col-md-3 mb-3">
-              <label for="cc-expiration">CVV</label>
+              <label htmlFor="cc-expiration">CVV</label>
               <input
                 type="text"
                 className="form-control"

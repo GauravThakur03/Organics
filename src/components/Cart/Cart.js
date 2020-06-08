@@ -13,6 +13,7 @@ const Cart = ({cart, ...props}) => {
           <CartList cartItems={cart.cartItems} {...props}/>
           <CartTotals
             items={cart.cartItems}
+            clearCart={props.clearCart}
           />
         </>
       ) : (
