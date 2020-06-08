@@ -12,7 +12,7 @@ const Cart = ({cart, ...props}) => {
           <CartColumns />
           <CartList cartItems={cart.cartItems} {...props}/>
           <CartTotals
-            values={{ cartSubTotal:300, cartTax:30, cartTotal:330 }}
+            items={cart.cartItems}
           />
         </>
       ) : (
