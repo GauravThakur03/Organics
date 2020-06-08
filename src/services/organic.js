@@ -14,3 +14,18 @@ export function loadCategories() {
             return Promise.reject(error);
         });
 }
+
+export function loadOrders() {
+    const endPoint = `${API_HOST}/orders`;
+
+    return fetch(endPoint)
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .catch((error) => {
+            return Promise.reject(error);
+        });
+}

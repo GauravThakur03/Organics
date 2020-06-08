@@ -15,7 +15,7 @@ import Cart from "./components/Cart";
 import Orders from "./components/Orders";
 import ContactUs from "./components/ContactUs";
 import AboutUs from "./components/AboutUs";
-import Checkout from "./components/Checkout";
+import Checkout from "./components/Checkout/CheckoutConnector";
 
 const store = createStore();
 
