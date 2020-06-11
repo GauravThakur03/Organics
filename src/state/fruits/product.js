@@ -1,7 +1,7 @@
 import t from 'tcomb';
 
 const Product = t.struct({
-    catID: t.maybe(t.String),
+    catID: t.maybe(t.union([t.String, t.Number])),
     catName: t.maybe(t.String),
     prodDesc: t.String,
     prodID: t.union([t.String, t.Number]),

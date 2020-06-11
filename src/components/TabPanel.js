@@ -13,7 +13,7 @@ const TabPanel = ({categories}) => {
             categories.map((category) => {
                 return (
                   <Tab eventKey={category.catID} title={category.catName} key={category.catID}>
-                    <ProductList products={category.products}/>
+                    <ProductList products={category.products} catID={category.catID}/>
                   </Tab>
                 )
             })

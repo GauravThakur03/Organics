@@ -6,6 +6,7 @@ import { addToCart, increaseQuantity, deacreaseQuantity, clearCart, removeFromCa
 
 function mapStateToProps(state) {
     return {
+    	categories: state.fruits.categories,
         cart: state.fruits.cart
     };
 }

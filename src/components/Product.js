@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Product = ({product, cart, addToCart}) => {
+const Product = ({product, cart, catID, addToCart}) => {
   const { prodID, prodName, prodPic, prodPrice, prodDesc } = product;
   const inCart = cart.cartItems.some(product => product.prodID === prodID);
   const cartItem = {
+    catID,
     prodID,
     prodName, 
     prodPic, 

@@ -1,7 +1,12 @@
 import React from "react";
-const CartItem = ({ product, increaseProductQuantity, decreaseProductQuantity, clearCart, removeFromCart }) => {
-  const { prodID, prodName, prodPic, prodPrice, prodQuant } = product;
+const CartItem = ({ categories, product, increaseProductQuantity, decreaseProductQuantity, clearCart, removeFromCart }) => {
+  const { catID, prodID, prodName, prodPic, prodPrice, prodQuant } = product;
   const total = prodQuant * prodPrice;
+  const quantity = categories.find(category => category.catID === catID).products.find(prod => prod.prodID === prodID).prodQuant;
+
+  const increaseQuantity = (prodID) => {
+    quantity < prodQuant + 1 ? alert('Out of Stock') : increaseProductQuantity(prodID);
+  }
 
   return (
     <div className="row my-2 text-capitalize text-center border-bottom">
@@ -31,7 +36,7 @@ const CartItem = ({ product, increaseProductQuantity, decreaseProductQuantity, c
           <span className="btn btn-black mx-1">{prodQuant}</span>
           <span
             className="btn btn-black mx-1"
-            onClick={() => increaseProductQuantity(prodID)}
+            onClick={() => increaseQuantity(prodID)}
           >
             +
           </span>
