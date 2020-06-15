@@ -18,11 +18,7 @@ const OrderItem = ({ order }) => {
       </div>
 
       <div className="col-10 mx-auto col-lg-2">{info}</div>
-      <div className="col-10 mx-auto col-lg-2">
-        <div className="cart-icon" onClick={() => console.log(`remove ${id}`)}>
-          <button className="btn btn-danger text-center text-capitalize">cancel</button>
-        </div>
-      </div>
+      
     </div>
     
   );

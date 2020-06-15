@@ -2,7 +2,7 @@ import React from "react";
 import { Dropdown } from "react-bootstrap";
 const SelectLanguage = () => {
   return (
-    <Dropdown className="mr-2">
+    <Dropdown className="mr-2 d-inline">
       <Dropdown.Toggle variant="success" id="dropdown-basic">
         Choose language
       </Dropdown.Toggle>
