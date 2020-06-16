@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import Categories from "./Categories";
-import ProductList from "./ProductList";
 import AppCarousel from "./AppCarousel";
 import TabPanel from "./TabPanel";
 

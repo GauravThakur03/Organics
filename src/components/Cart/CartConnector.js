@@ -2,7 +2,7 @@ import {connect as reduxConnect} from 'react-redux';
 
 import Cart from './Cart';
 
-import { addToCart, increaseQuantity, deacreaseQuantity, clearCart, removeFromCart } from '../../action-creator/organic';
+import { increaseQuantity, deacreaseQuantity, clearCart, removeFromCart } from '../../action-creator/organic';
 
 function mapStateToProps(state) {
     return {

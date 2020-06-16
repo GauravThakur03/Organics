@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ButtonContainer } from "../Button";
 import { cartTotal } from '../../utils';
 
 const CartTotals = ({ values, history,items, clearCart }) => {

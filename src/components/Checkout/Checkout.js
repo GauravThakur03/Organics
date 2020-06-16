@@ -1,4 +1,4 @@
-import React, { Component, useCallback } from "react";
+import React, { Component } from "react";
 import { cartTotal } from "../../utils";
 import Address from "./Address";
 import PaymentMethods from "./PaymentMethods";
@@ -26,11 +26,6 @@ class Checkout extends Component {
     }
   }
   render() {
-    console.log(this.props.user);
-    const order =
-      this.props.orders && this.props.orders.length
-        ? this.props.orders[0]
-        : null;
     const total = cartTotal(this.props.cart.cartItems);
     return (
       <div className="container">
@@ -65,39 +60,3 @@ class Checkout extends Component {
 }
 
 export default Checkout;
-
-const cart = [
-  {
-    id: 6,
-    title: "Fresho Watermelon",
-    img: "img/product-6.png",
-    price: 38,
-    info:
-      "Lorem ipsum dolor amet offal butcher quinoa sustainable gastropub, echo park actually green juice sriracha paleo. Brooklyn sriracha semiotics, DIY coloring book mixtape craft beer sartorial hella blue bottle. Tote bag wolf authentic try-hard put a bird on it mumblecore. Unicorn lumbersexual master cleanse blog hella VHS, vaporware sartorial church-key cardigan single-origin coffee lo-fi organic asymmetrical. Taxidermy semiotics celiac stumptown scenester normcore, ethical helvetica photo booth gentrify.",
-    inCart: false,
-    count: 0,
-    total: 0,
-  },
-  {
-    id: 7,
-    title: "Fresho Pomegranate",
-    img: "img/product-7.png",
-    price: 159,
-    info:
-      "Lorem ipsum dolor amet offal butcher quinoa sustainable gastropub, echo park actually green juice sriracha paleo. Brooklyn sriracha semiotics, DIY coloring book mixtape craft beer sartorial hella blue bottle. Tote bag wolf authentic try-hard put a bird on it mumblecore. Unicorn lumbersexual master cleanse blog hella VHS, vaporware sartorial church-key cardigan single-origin coffee lo-fi organic asymmetrical. Taxidermy semiotics celiac stumptown scenester normcore, ethical helvetica photo booth gentrify.",
-    inCart: false,
-    count: 0,
-    total: 0,
-  },
-  {
-    id: 8,
-    title: "Orange - Nagpur, Regular",
-    img: "img/product-8.png",
-    price: 88,
-    info:
-      "Lorem ipsum dolor amet offal butcher quinoa sustainable gastropub, echo park actually green juice sriracha paleo. Brooklyn sriracha semiotics, DIY coloring book mixtape craft beer sartorial hella blue bottle. Tote bag wolf authentic try-hard put a bird on it mumblecore. Unicorn lumbersexual master cleanse blog hella VHS, vaporware sartorial church-key cardigan single-origin coffee lo-fi organic asymmetrical. Taxidermy semiotics celiac stumptown scenester normcore, ethical helvetica photo booth gentrify.",
-    inCart: false,
-    count: 0,
-    total: 0,
-  },
-];

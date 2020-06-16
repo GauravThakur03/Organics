@@ -1,4 +1,4 @@
-import { SET_CATEGORY, SET_CART, INCREASE_QTY, DECREASE_QTY, CLEAR_CART, REMOVE_CART_ITEM, SET_ORDERS, GET_ORDERS, SET_USER} from '../actionTypes';
+import { SET_CATEGORY, SET_CART, INCREASE_QTY, DECREASE_QTY, CLEAR_CART, REMOVE_CART_ITEM, SET_ORDERS, SET_USER} from '../actionTypes';
 import { loadCategories, loadOrders, loadUser } from '../services/organic';
 
 export function categories() {
@@ -78,8 +78,7 @@ const defaultUserObject = {
 export function user() {
 	return (dispatch) => {
 	  return loadUser(arguments[1])
-		.then((user=defaultUserObject) => {
-			console.log(user);
+		.then((user) => {
 		  dispatch({
 			type: SET_USER,
 			user: user || defaultUserObject,
