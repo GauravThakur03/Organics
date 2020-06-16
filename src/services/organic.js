@@ -29,3 +29,17 @@ export function loadOrders() {
             return Promise.reject(error);
         });
 }
+
+export function loadUser(phone) {
+    const endPoint = `${API_HOST}/users:${phone}`;
+    return fetch(endPoint)
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .catch((error) => {
+            return Promise.reject(error);
+        });
+}

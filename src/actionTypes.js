@@ -8,3 +8,4 @@ export const DECREASE_QTY = 'DECREASE_QTY';
 export const INCREASE_QTY = 'INCREASE_QTY';
 export const CLEAR_CART = 'CLEAR_CART';
 export const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
+export const SET_USER = 'SET_USER';

@@ -6,7 +6,7 @@ const CheckoutTotal = ({ subTotal }) => {
   const data = [
     { label: "Sub Total", value: subTotal },
     { label: "GST", value: gst },
-    { label: "Total", value: total },
+    { label: "Total", value: parseFloat(total.toFixed(2)) },
   ];
 
   return (

@@ -1,5 +1,5 @@
-import { SET_CATEGORY, SET_CART, INCREASE_QTY, DECREASE_QTY, CLEAR_CART, REMOVE_CART_ITEM, SET_ORDERS, GET_ORDERS} from '../actionTypes';
-import { loadCategories, loadOrders } from '../services/organic';
+import { SET_CATEGORY, SET_CART, INCREASE_QTY, DECREASE_QTY, CLEAR_CART, REMOVE_CART_ITEM, SET_ORDERS, GET_ORDERS, SET_USER} from '../actionTypes';
+import { loadCategories, loadOrders, loadUser } from '../services/organic';
 
 export function categories() {
 	return (dispatch) => {
@@ -64,3 +64,29 @@ export function orders() {
       });
   };
 }
+
+const defaultUserObject = {
+    phone:"",
+    name: '',
+    address1: '',
+    address2:'',
+    landmark: '',
+    pinCode:0,
+	state: '',
+	city:''
+}
+export function user() {
+	return (dispatch) => {
+	  return loadUser(arguments[1])
+		.then((user=defaultUserObject) => {
+			console.log(user);
+		  dispatch({
+			type: SET_USER,
+			user: user || defaultUserObject,
+		  });
+		})
+		.catch((error) => {
+		  return Promise.reject(error);
+		});
+	};
+  }
