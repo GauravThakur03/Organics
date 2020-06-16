@@ -9,8 +9,7 @@ const defaultState = {
     landmark: '',
     pinCode:0,
     state: '',
-    city:'',
-    pinCode: 450000
+    city:''
 };
 
 function setUser(state, action) {
