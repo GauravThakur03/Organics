@@ -1,7 +1,7 @@
 import { connect as reduxConnect } from "react-redux";
 
 import Checkout from "./Checkout";
-import { orders, user } from "../../action-creator/organic";
+import { orders, user, generateOrder } from "../../action-creator/organic";
 
 function mapStateToProps(state) {
   return {
@@ -19,6 +19,9 @@ function mapDispatchToProps(dispatch) {
     loadUser: (phone) => {
       dispatch(user(dispatch, phone));
     },
+    generateOrder: (order, phone) => {
+      return dispatch(generateOrder(order, phone));
+    }
   };
 }
 

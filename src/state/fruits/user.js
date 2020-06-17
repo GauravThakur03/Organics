@@ -1,7 +1,6 @@
 import t from "tcomb";
 
-const User = t.struct(
-  {
+const User = t.struct({
     name: t.String,
     email:t.String,
     address1: t.String,
@@ -10,8 +9,6 @@ const User = t.struct(
     pinCode: t.Number,
     state: t.String,
     city: t.String,
-  },
-  "User"
-);
+  }, "User");
 
 export default User;

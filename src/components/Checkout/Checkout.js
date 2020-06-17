@@ -9,6 +9,9 @@ import ItemsAndTotal from "./ItemsAndTotal";
 class Checkout extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      phone: null
+    };
     this.onFormChange = this.onFormChange.bind(this);
   }
   componentDidMount() {
@@ -20,6 +23,7 @@ class Checkout extends Component {
     if (fieldName === "phone" && val) {
       if (val.match(/\d/g).length === 10) {
         this.props.loadUser(val);
+        this.setState({phone: val});
       } else if (val.length === 10) {
         alert("Please enter valid 10 digit mobile number");
       }
@@ -36,7 +40,15 @@ class Checkout extends Component {
               enableReinitialize={true}
               initialValues={this.props.user}
               onSubmit={(values) => {
-                alert(JSON.stringify(values, null, 2));
+                
+                const order = {
+                  items: this.props.cart.cartItems,
+                  ...values
+                }
+                this.props.generateOrder(order, this.state.phone).then((data) => {
+                  alert('order created successfully...');
+                  this.props.history.push('/home');
+                })
               }}
             >
               <Form onChange={this.onFormChange} autoComplete="off">

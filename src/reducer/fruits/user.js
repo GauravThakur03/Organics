@@ -13,7 +13,7 @@ const defaultState = {
 };
 
 function setUser(state, action) {
-    return  {...state,...action.user};
+    return {...state,...action.user};
 }
 
 export default function (state = defaultState, action) {

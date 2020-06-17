@@ -31,7 +31,7 @@ export function loadOrders() {
 }
 
 export function loadUser(phone) {
-    const endPoint = `${API_HOST}/users:${phone}`;
+    const endPoint = `${API_HOST}/users/${phone}`;
     return fetch(endPoint)
         .then((response) => {
             if (response.ok) {
@@ -42,4 +42,19 @@ export function loadUser(phone) {
         .catch((error) => {
             return Promise.reject(error);
         });
+}
+
+export function processOrder(order, phone) {
+    const endPoint = `${API_HOST}/processOrder/${phone}`;
+
+    return fetch(endPoint, {
+        body: JSON.stringify(order),
+        method: 'post'
+    })
+    .then((response) => response.json())
+    .catch((error) => {
+        return error.json().then((json) => {
+            throw json;
+        });
+    });
 }

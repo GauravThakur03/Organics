@@ -1,5 +1,5 @@
 import { SET_CATEGORY, SET_CART, INCREASE_QTY, DECREASE_QTY, CLEAR_CART, REMOVE_CART_ITEM, SET_ORDERS, SET_USER} from '../actionTypes';
-import { loadCategories, loadOrders, loadUser } from '../services/organic';
+import { loadCategories, loadOrders, loadUser, processOrder } from '../services/organic';
 
 export function categories() {
 	return (dispatch) => {
@@ -88,4 +88,18 @@ export function user() {
 		  return Promise.reject(error);
 		});
 	};
+  }
+
+  export function generateOrder(order, phone) {
+  	return (dispatch) => {
+	  return processOrder(order, phone)
+		.then((response) => {
+		  dispatch(clearCart());
+		  return response;
+		})
+		.catch((error) => {
+		  return Promise.reject(error);
+		});
+	};
+
   }
