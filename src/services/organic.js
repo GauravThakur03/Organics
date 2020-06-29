@@ -1,7 +1,7 @@
 import { API_HOST } from '../config';
 
 export function loadCategories() {
-    const endPoint = `${API_HOST}/ecart/categories`;
+    const endPoint = `${API_HOST}/ekart/categories`;
 
     return fetch(endPoint)
         .then((response) => {
@@ -16,7 +16,7 @@ export function loadCategories() {
 }
 
 export function loadOrders() {
-    const endPoint = `${API_HOST}/ecart/orders`;
+    const endPoint = `${API_HOST}/ekart/orders`;
 
     return fetch(endPoint)
         .then((response) => {
@@ -31,7 +31,7 @@ export function loadOrders() {
 }
 
 export function loadUser(phone) {
-    const endPoint = `${API_HOST}/ecart/users/${phone}`;
+    const endPoint = `${API_HOST}/ekart/users/${phone}`;
     return fetch(endPoint)
         .then((response) => {
             if (response.ok) {
@@ -45,7 +45,7 @@ export function loadUser(phone) {
 }
 
 export function processOrder(order, phone) {
-    const endPoint = `${API_HOST}/ecart/processOrder/${phone}`;
+    const endPoint = `${API_HOST}/ekart/processOrder/${phone}`;
 
     return fetch(endPoint, {
         body: JSON.stringify(order),
