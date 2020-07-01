@@ -40,9 +40,9 @@ class Checkout extends Component {
               enableReinitialize={true}
               initialValues={this.props.user}
               onSubmit={(values) => {
-                
                 const order = {
                   items: this.props.cart.cartItems,
+                  mobile: parseInt(this.state.phone),
                   ...values
                 }
                 this.props.generateOrder(order, this.state.phone).then((data) => {

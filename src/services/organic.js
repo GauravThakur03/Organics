@@ -45,7 +45,7 @@ export function loadUser(phone) {
 }
 
 export function processOrder(order, phone) {
-    const endPoint = `${API_HOST}/ekart/processOrder/${phone}`;
+    const endPoint = `${API_HOST}/ekart/processOrder`;
 
     return fetch(endPoint, {
         body: JSON.stringify(order),
