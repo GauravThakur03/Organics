@@ -41,6 +41,7 @@ class Checkout extends Component {
               initialValues={this.props.user}
               onSubmit={(values) => {
                 const order = {
+                  amount: total,
                   items: this.props.cart.cartItems,
                   mobile: parseInt(this.state.phone),
                   ...values
