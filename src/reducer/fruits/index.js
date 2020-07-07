@@ -6,6 +6,7 @@ import tracking from './tracking';
 import cart from './cart';
 import categories from './categories';
 import user from './user';
+import status from './status';
 
 export function makeReducer() {
     const reducers = {
@@ -13,7 +14,8 @@ export function makeReducer() {
     	categories,
     	orders,
         tracking,
-        user
+        user,
+        status
     };
 
     return combineAndWrapReducers(reducers, Fruits);

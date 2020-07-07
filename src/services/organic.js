@@ -44,6 +44,20 @@ export function loadUser(phone) {
         });
 }
 
+export function loadStatus(phone) {
+    const endPoint = `${API_HOST}/ekart/getstatus/${phone}`;
+    return fetch(endPoint)
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .catch((error) => {
+            return Promise.reject(error);
+        });
+}
+
 export function processOrder(order, phone) {
     const endPoint = `${API_HOST}/ekart/processOrder`;
 

@@ -7,6 +7,9 @@ const OrderColumns = () => {
                 <p className="text-uppercase">Order Id</p>
             </div>
             <div className="col-10 mx-auto col-lg-2">
+                <p className="text-uppercase">Product</p>
+            </div>
+            <div className="col-10 mx-auto col-lg-2">
                 <p className="text-uppercase">Amount</p>
             </div>
             <div className="col-10 mx-auto col-lg-2">
@@ -15,9 +18,7 @@ const OrderColumns = () => {
             <div className="col-10 mx-auto col-lg-2">
                 <p className="text-uppercase">Status</p>
             </div>
-            <div className="col-10 mx-auto col-lg-2">
-                <p className="text-uppercase">Additional Info</p>
-            </div>
+            
         </div>
     </div>
      );

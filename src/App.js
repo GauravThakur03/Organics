@@ -11,7 +11,7 @@ import NavBar from "./components/Navbar";
 import Home from "./components/HomeConnector";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart";
-import Orders from "./components/Orders";
+import Orders from "./components/Orders/OrdersConnector";
 import ContactUs from "./components/ContactUs";
 import AboutUs from "./components/AboutUs";
 import Checkout from "./components/Checkout/CheckoutConnector";
