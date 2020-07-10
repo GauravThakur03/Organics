@@ -1,6 +1,7 @@
-import t from 'tcomb';
+import t from "tcomb";
 
-const Product = t.struct({
+const Product = t.struct(
+  {
     catID: t.maybe(t.union([t.String, t.Number])),
     catName: t.maybe(t.String),
     prodDesc: t.String,
@@ -10,8 +11,11 @@ const Product = t.struct({
     prodPrice: t.Number,
     prodQuant: t.Number,
     prodUnit: t.String,
+    prodAvailable: t.String,
     varID: t.String,
-    varName: t.String
-}, 'Product');
+    varName: t.String,
+  },
+  "Product"
+);
 
 export default Product;
