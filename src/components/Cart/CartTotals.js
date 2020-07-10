@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { cartTotal } from '../../utils';
+import { cartTotal } from "../../utils";
 
-const CartTotals = ({ values, history,items, clearCart }) => {
+const CartTotals = ({ values, history, items, clearCart, isServiceable }) => {
   const total = cartTotal(items);
 
   return (
@@ -19,8 +19,13 @@ const CartTotals = ({ values, history,items, clearCart }) => {
           </h5>
           <Link to="/checkout">
             <button
-              className="btn btn-outline-success text-uppercase mb-3 mt-2 px-5"
+              className={
+                isServiceable
+                  ? "btn btn-outline-success text-uppercase mb-3 mt-2 px-5"
+                  : "btn btn-outline-disabled border border-disabled text-uppercase mb-3 mt-2 px-5"
+              }
               type="button"
+              disabled={!isServiceable}
             >
               Checkout
             </button>
