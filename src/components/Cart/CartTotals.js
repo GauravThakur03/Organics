@@ -17,6 +17,9 @@ const CartTotals = ({ values, history, items, clearCart, isServiceable }) => {
             <span className="text-title">total: &#8377;</span>
             <strong>{total}</strong>
           </h5>
+          {!isServiceable ? (
+            <><small class="text-muted mb-1"><sup>*</sup>Check delivery area</small><br/></>
+          ) : null}
           <Link to="/checkout">
             <button
               className={
@@ -30,6 +33,7 @@ const CartTotals = ({ values, history, items, clearCart, isServiceable }) => {
               Checkout
             </button>
           </Link>
+
           <br />
           <Link to="/home">
             <button
