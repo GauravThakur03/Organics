@@ -72,12 +72,14 @@ const ProductWrapper = styled.div`
   .card {
     border: transparent;
     transition: all 1s linear;
-    position:relative;
+    position: relative;
 
-    .out-of-stock{
-      bottom:20%;
-      left:50%;
-      transform:translateX(-50%);
+    .out-of-stock {
+      bottom: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      opacity: 0.6;
     }
   }
   .card-footer {
