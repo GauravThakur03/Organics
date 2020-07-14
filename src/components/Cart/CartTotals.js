@@ -18,7 +18,7 @@ const CartTotals = ({ values, history, items, clearCart, isServiceable }) => {
             <strong>{total}</strong>
           </h5>
           {!isServiceable ? (
-            <><small class="text-muted mb-1"><sup>*</sup>Check delivery area</small><br/></>
+            <><small className="text-muted mb-1 padding-delivery-10"><sup>*</sup>Check delivery area</small></>
           ) : null}
           <Link to="/checkout">
             <button
