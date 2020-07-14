@@ -72,3 +72,18 @@ export function processOrder(order, phone) {
         });
     });
 }
+
+export function checkDeliveryArea(pincode) {
+    const endPoint = `${API_HOST}/ekart/deliverycheck/${pincode}`;
+    
+    return fetch(endPoint)
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .catch((error) => {
+            return Promise.reject(error);
+        });
+}

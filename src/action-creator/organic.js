@@ -1,5 +1,5 @@
 import { SET_CATEGORY, SET_CART, INCREASE_QTY, DECREASE_QTY, CLEAR_CART, REMOVE_CART_ITEM, SET_ORDERS, SET_USER, SET_STATUS} from '../actionTypes';
-import { loadCategories, loadOrders, loadUser, processOrder, loadStatus } from '../services/organic';
+import { checkDeliveryArea, loadCategories, loadOrders, loadUser, processOrder, loadStatus } from '../services/organic';
 
 export function categories() {
 	return (dispatch) => {
@@ -103,6 +103,7 @@ export function user() {
 	};
 
   }
+
   export function status() {
 	return (dispatch) => {
 	  return loadStatus(arguments[1])
@@ -116,4 +117,18 @@ export function user() {
 		  return Promise.reject(error);
 		});
 	};
+  }
+
+
+export function checkPincode(pincode) {
+  	return (dispatch) => {
+	  return checkDeliveryArea(pincode)
+		.then((response) => {
+		  return response;
+		})
+		.catch((error) => {
+		  return Promise.reject(error);
+		});
+	};
+
   }

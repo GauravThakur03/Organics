@@ -1,7 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from 'react-redux'
+
+import { checkPincode } from '../../action-creator/organic';
+
 const CheckDeliveryArea = ({setIsServiceableArea}) => {
   const [error, setError] = useState(false);
+  const dispatch = useDispatch();
 
   /** deliveryAreaStatus = null -> Show nothing 
    *  deliveryAreaStatus = false -> Sorry, we are not delivering in your area.
@@ -15,7 +20,11 @@ const CheckDeliveryArea = ({setIsServiceableArea}) => {
     if (isValid) {
       setError(false);
       //Hit zipcode api and if delivering in given area then
-      setIsServiceableArea(true);
+      dispatch(checkPincode(zipcode)).then((response) => {
+        setDeliveryAreaStatus(response.available);
+        setIsServiceableArea(response.available);
+      });
+      
     } else {
       setError(true);
       setIsServiceableArea(false);
