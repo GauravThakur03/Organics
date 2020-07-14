@@ -19,8 +19,9 @@ const Cart = ({cart, ...props}) => {
             items={cart.cartItems}
             clearCart={props.clearCart}
             isServiceable={isServiceableArea}
+            setIsServiceableArea={setIsServiceableArea}
           />
-          <CheckDeliveryArea setIsServiceableArea={setIsServiceableArea}/>
+          
         </>
       ) : (
         <EmptyCart/>

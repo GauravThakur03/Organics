@@ -1,17 +1,17 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 
-import { checkPincode } from '../../action-creator/organic';
+import { checkPincode } from "../../action-creator/organic";
 
-const CheckDeliveryArea = ({setIsServiceableArea}) => {
+const CheckDeliveryArea = ({ setIsServiceableArea }) => {
   const [error, setError] = useState(false);
   const dispatch = useDispatch();
 
-  /** deliveryAreaStatus = null -> Show nothing 
+  /** deliveryAreaStatus = null -> Show nothing
    *  deliveryAreaStatus = false -> Sorry, we are not delivering in your area.
-   *  deliveryAreaStatus = true -> We are delivering in your area. 
-  */
+   *  deliveryAreaStatus = true -> We are delivering in your area.
+   */
   const [deliveryAreaStatus, setDeliveryAreaStatus] = useState(null);
 
   const onZipCodeEnter = (event) => {
@@ -24,7 +24,6 @@ const CheckDeliveryArea = ({setIsServiceableArea}) => {
         setDeliveryAreaStatus(response.available);
         setIsServiceableArea(response.available);
       });
-      
     } else {
       setError(true);
       setIsServiceableArea(false);
@@ -44,22 +43,25 @@ const CheckDeliveryArea = ({setIsServiceableArea}) => {
       </div>
       <div className="row justify-content-center my-4">
         <div className="form-inline">
-          <div className="form-group mx-sm-3 mb-2 position-relative">
+          <div className="form-group mx-3 mb-2 position-relative d-flex">
             <input
               type="text"
               maxLength="6"
               name="zipcode"
-              className="form-control mb-2 mr-sm-2 mb-sm-0"
+              className="form-control mr-2 mb-0"
               id="zipcode"
               required
               aria-describedby="telHelp"
               placeholder="500030"
             />
-            <br />
+
             {error ? (
-              <span className="text-danger position-absolute top-100">
-                Enter valid zip code
-              </span>
+              <>
+                <br />
+                <span className="text-danger position-absolute top-100">
+                  Enter valid zip code
+                </span>
+              </>
             ) : null}
           </div>
           <button onClick={onZipCodeEnter} className="btn btn-primary mb-2">
