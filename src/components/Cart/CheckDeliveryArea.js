@@ -14,13 +14,13 @@ const CheckDeliveryArea = ({ setIsServiceableArea }) => {
    */
   const [deliveryAreaStatus, setDeliveryAreaStatus] = useState(null);
 
-  const onZipCodeEnter = (event) => {
-    const zipcode = document.getElementById("zipcode").value;
-    const isValid = /^[1-9][0-9]{5}$/.test(zipcode);
+  const onPinCodeEnter = (event) => {
+    const pincode = document.getElementById("pincode").value;
+    const isValid = /^[1-9][0-9]{5}$/.test(pincode);
     if (isValid) {
       setError(false);
-      //Hit zipcode api and if delivering in given area then
-      dispatch(checkPincode(zipcode)).then((response) => {
+      //Hit pincode api and if delivering in given area then
+      dispatch(checkPincode(pincode)).then((response) => {
         setDeliveryAreaStatus(response.available);
         setIsServiceableArea(response.available);
       });
@@ -32,13 +32,11 @@ const CheckDeliveryArea = ({ setIsServiceableArea }) => {
   return (
     <>
       <div className="row">
-        <h4 className="text-center mx-auto my-3 text-capitalize">
-          check delivery area
+        <h4 className="text-center mx-auto my-3">
+          CHECK DELIVERY IN YOUR AREA
         </h4>
         <p className="text-muted mt-1 mb-2 px-1 text-center w-100">
-          Enter zipcode to check product availability in your area. We are
-          constantly expanding our delivery area, so please check back if you're
-          not currently in our delivery area.
+          Enter Pincode to check the Delivery availability
         </p>
       </div>
       <div className="row justify-content-center my-4">
@@ -47,9 +45,9 @@ const CheckDeliveryArea = ({ setIsServiceableArea }) => {
             <input
               type="text"
               maxLength="6"
-              name="zipcode"
+              name="pincode"
               className="form-control mr-2 mb-0"
-              id="zipcode"
+              id="pincode"
               required
               aria-describedby="telHelp"
               placeholder="500030"
@@ -59,13 +57,13 @@ const CheckDeliveryArea = ({ setIsServiceableArea }) => {
               <>
                 <br />
                 <span className="text-danger position-absolute top-100">
-                  Enter valid zip code
+                  Enter valid pin code
                 </span>
               </>
             ) : null}
           </div>
-          <button onClick={onZipCodeEnter} className="btn btn-primary mb-2">
-            Check
+          <button onClick={onPinCodeEnter} className="btn btn-outline-primary text-uppercase mb-2">
+            Search
           </button>
         </div>
       </div>

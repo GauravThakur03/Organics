@@ -25,14 +25,6 @@ const CartTotals = ({
             <span className="text-title">total: &#8377;</span>
             <strong>{total}</strong>
           </h5>
-          {!isServiceable ? (
-            <>
-              <small className="text-muted mb-1">
-                <sup>*</sup>Check delivery area
-              </small>
-              <br />
-            </>
-          ) : null}
           <Link to="/checkout">
             <button
               className={
