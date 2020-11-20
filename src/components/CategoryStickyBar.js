@@ -5,9 +5,10 @@ import styled from "styled-components";
 import { categories, setSelectedCategory } from "../action-creator/organic";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { default_selected_cat } from "../state/defaultStates";
 
 function CategoryItem({ data, onSelect, active }) {
-  const { catName, catIcon, catID } = data;
+  const { catName, catIcon } = data;
 
   return (
     <ItemWrapper
@@ -30,11 +31,13 @@ const CategoryStickyBar = (props) => {
   let history = useHistory();
   let { pathname } = useLocation();
   const categoriesArray = useSelector((state) => state.fruits.categories);
+  const selectedCategory = useSelector(
+    (state) => state.fruits.selectedCategory
+  );
 
   const dispatch = useDispatch();
 
   const [squeezed, setSqueezed] = useState(false);
-  const [selectedCat, setSelectedCat] = useState({});
   const [hidden, setHidden] = useState(false);
 
   const handleScroll = (event) => {
@@ -42,15 +45,13 @@ const CategoryStickyBar = (props) => {
   };
 
   const handleCategorySelect = (cat) => {
-    setSelectedCat(cat);
     dispatch(setSelectedCategory(cat));
     history.push("/products");
   };
 
   useEffect(() => {
-    console.log(pathname);
     if (pathname === "/home") {
-      setSelectedCat({});
+      dispatch(setSelectedCategory(default_selected_cat));
     }
     if (["/home", "/products"].includes(pathname)) {
       setHidden(false);
@@ -80,7 +81,11 @@ const CategoryStickyBar = (props) => {
         <CategoryItem
           data={cat}
           key={cat.catID}
-          active={selectedCat.catID === cat.catID}
+          active={
+            selectedCategory.catID && selectedCategory.catID === cat.catID
+              ? true
+              : false
+          }
           onSelect={handleCategorySelect}
         />
       ))}

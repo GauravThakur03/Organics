@@ -1,18 +1,11 @@
 import { SET_SELECTED_CATEGORY } from "../../actionTypes";
-
-const defaultState = {
-  catID: 0,
-  catName: "",
-  catIcon: null,
-  prodCount: 0,
-  products: [],
-};
+import { default_selected_cat } from "../../state/defaultStates";
 
 function setCategory(state, action) {
   return { ...state, ...action.category };
 }
 
-export default function (state = defaultState, action) {
+export default function (state = default_selected_cat, action) {
   const actionHandlers = {
     [SET_SELECTED_CATEGORY]: setCategory,
   };

@@ -24,7 +24,7 @@ const Product = ({ product, cart, catID, addToCart }) => {
   };
 
   return (
-    <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
+    <ProductWrapper className="col-9 col-md-6 col-lg-3 my-3 d-flex">
       <div className="card">
         <div className="img-container p-5">
           <Link to="/details">
