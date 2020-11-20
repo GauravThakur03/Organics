@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AppCarousel from "./AppCarousel";
 import TabPanel from "./TabPanel";
+import $ from "jquery";
 
 class Home extends Component {
   componentDidMount() {
@@ -17,7 +18,9 @@ class Home extends Component {
         </div>
         <div className="row">
           <div className="col-12 px-0">
-            {this.props.categories.length && <TabPanel categories={this.props.categories}/>}
+            {this.props.categories.length && (
+              <TabPanel categories={this.props.categories} />
+            )}
           </div>
         </div>
       </main>

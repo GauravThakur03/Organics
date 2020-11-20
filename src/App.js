@@ -15,6 +15,7 @@ import Orders from "./components/Orders/OrdersConnector";
 import ContactUs from "./components/ContactUs";
 import AboutUs from "./components/AboutUs";
 import Checkout from "./components/Checkout/CheckoutConnector";
+import CategoryProducts from "./components/CategoryProducts";
 
 const store = createStore();
 
@@ -30,6 +31,7 @@ function App(props) {
           <Route exact path="/contactus" component={ContactUs} />
           <Route exact path="/orders" component={Orders} />
           <Route exact path="/checkout" component={Checkout} />
+          <Route exact path="/products" component={CategoryProducts} />
         </Switch>
         <Footer />
       </>

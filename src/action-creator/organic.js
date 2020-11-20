@@ -1,4 +1,4 @@
-import { SET_CATEGORY, SET_CART, INCREASE_QTY, DECREASE_QTY, CLEAR_CART, REMOVE_CART_ITEM, SET_ORDERS, SET_USER, SET_STATUS} from '../actionTypes';
+import { SET_CATEGORY, SET_CART, INCREASE_QTY, DECREASE_QTY, CLEAR_CART, REMOVE_CART_ITEM, SET_ORDERS, SET_USER, SET_STATUS, SET_SELECTED_CATEGORY} from '../actionTypes';
 import { checkDeliveryArea, loadCategories, loadOrders, loadUser, processOrder, loadStatus } from '../services/organic';
 
 export function categories() {
@@ -14,6 +14,13 @@ export function categories() {
 	            return Promise.reject(error);
 	        });
 	}
+}
+
+export function setSelectedCategory(category) {	
+	return {
+	    category,
+	    type: SET_SELECTED_CATEGORY
+	};
 }
 
 export function addToCart(cartItem) {	

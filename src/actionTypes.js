@@ -10,3 +10,4 @@ export const CLEAR_CART = 'CLEAR_CART';
 export const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM';
 export const SET_USER = 'SET_USER';
 export const SET_STATUS = 'SET_STATUS';
+export const SET_SELECTED_CATEGORY = 'SET_SELECTED_CATEGORY';

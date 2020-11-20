@@ -9,6 +9,7 @@ import Status from './status'
 const Fruits = t.struct({
 	cart: Cart,
     categories: t.list(Category),
+    selectedCategory: Category,
     tracking: t.list(Track),
     orders: t.list(Order),
     user:User,
