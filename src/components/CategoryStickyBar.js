@@ -62,7 +62,7 @@ const CategoryStickyBar = (props) => {
 
   useEffect(() => {
     dispatch(categories(dispatch));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);

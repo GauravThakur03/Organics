@@ -11,5 +11,6 @@ export default function (state = defaultState, action) {
         [SET_CATEGORY]: setCategory
     };
     const reducer = actionHandlers[action.type];
+    
     return reducer ? reducer(state, action) : state;
 }

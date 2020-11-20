@@ -14,6 +14,9 @@ const Product = t.struct(
     prodAvailable: t.String,
     varID: t.String,
     varName: t.String,
+    prodBestsellers: t.maybe(t.Boolean),
+    prodDeals: t.maybe(t.Boolean)
+    
   },
   "Product"
 );

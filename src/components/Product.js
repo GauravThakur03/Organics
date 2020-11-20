@@ -28,7 +28,7 @@ const Product = ({ product, cart, catID, addToCart }) => {
       <div className="card">
         <div className="img-container p-5">
           <Link to="/details">
-            <img src={prodPic} alt="product" className="card-img-top" />
+            <img src={prodPic} alt={prodName} className="card-img-top" />
           </Link>
           {prodAvailable && prodAvailable === "yes" ? (
             <button
