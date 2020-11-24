@@ -24,3 +24,20 @@ body{
 .active .catItemIcon{
   background-color: var(--mainGreen);
 }
+.rec-item-wrapper{
+  height: 100% !important;
+}
+.rec-dot{
+  box-shadow: none !important;
+  border: 1px solid grey !important;
+}
+.rec-dot_active{
+  background-color: var(--mainGreen) !important;
+ 
+}
+.rec-arrow-left:hover, .rec-arrow-right:hover{
+  background-color: var(--mainGreen) !important;
+}
+.rec-arrow-left, .rec-arrow-right{
+  background-color: transparent !important;
+}

@@ -1,8 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import $ from "jquery";
 
-const Product = ({ product, cart, catID, addToCart }) => {
+const Product = ({
+  product,
+  cart,
+  catID,
+  addToCart,
+  asCarouselItem = false,
+}) => {
   const {
     prodID,
     prodName,
@@ -22,9 +30,16 @@ const Product = ({ product, cart, catID, addToCart }) => {
     prodDesc,
     prodQuant: 1,
   };
+  const [itemWidth, setItemWidth] = useState(null);
 
   return (
-    <ProductWrapper className="col-9 col-md-6 col-lg-3 my-3 d-flex">
+    <ProductWrapper
+      className={
+        asCarouselItem
+          ? "mx-2 my-3 d-flex product"
+          : "col-9 col-md-6 col-lg-3 my-3 d-flex product"
+      }
+    >
       <div className="card">
         <div className="img-container p-5">
           <Link to="/details">

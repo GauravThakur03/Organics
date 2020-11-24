@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import AppCarousel from "./AppCarousel";
-import Carousel from "./Carousel";
+import CarouselContainer from "./Carousel";
 import CategoryList from "./CategoryList";
 import Section from "./Section";
-import Product from "./ProductConnector";
 
 class Home extends Component {
   componentDidMount() {
@@ -26,9 +25,7 @@ class Home extends Component {
   getFilteredProducts(categories = [], filter) {
     let filteredProducts = [];
     for (let i = 0; i < categories.length; i++) {
-      let subArr = categories[i].products.filter(
-        (prod) => prod[filter]
-      );
+      let subArr = categories[i].products.filter((prod) => prod[filter]);
       filteredProducts = [...filteredProducts, ...subArr];
     }
     return filteredProducts;
@@ -45,11 +42,9 @@ class Home extends Component {
           </div>
         </div>
         <Section title="Best sellers">
-          <Carousel>
-            {this.getFilteredProducts(categories, "prodBestsellers").map((product, i) => (
-              <Product product={product} key={i} catID={product.catID} />
-            ))}
-          </Carousel>
+          <CarouselContainer
+            items={this.getFilteredProducts(categories, "prodBestsellers")}
+          />
         </Section>
         <Section title="Explore by category">
           {rows.map((row, i) => (
@@ -59,11 +54,7 @@ class Home extends Component {
           ))}
         </Section>
         <Section title="Deal of the Day">
-          <Carousel>
-            {this.getFilteredProducts(categories, "prodDeals").map((product, i) => (
-              <Product product={product} key={i} catID={product.catID} />
-            ))}
-          </Carousel>
+          <CarouselContainer items={this.getFilteredProducts(categories, "prodDeals")} />
         </Section>
       </main>
     );
