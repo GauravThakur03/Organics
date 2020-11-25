@@ -9,7 +9,6 @@ const CarouselContainer = ({ items }) => {
   const [itemsToShow, setItemsToShow] = useState(1);
 
   useWindowResize((width) => {
-    console.log(width);
     let x = 2;
     if (width < 768) {
       x = 1;
@@ -23,7 +22,12 @@ const CarouselContainer = ({ items }) => {
     <CarouselContainerDiv className="row carouselContainer">
       <Carousel itemsToShow={itemsToShow}>
         {items.map((product, i) => (
-          <Product product={product} key={i} catID={product.catID} asCarouselItem={true}/>
+          <Product
+            product={product}
+            key={i}
+            catID={product.catID}
+            asCarouselItem={true}
+          />
         ))}
       </Carousel>
     </CarouselContainerDiv>

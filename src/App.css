@@ -41,3 +41,6 @@ body{
 .rec-arrow-left, .rec-arrow-right{
   background-color: transparent !important;
 }
+.popover{
+  width:300px;
+}

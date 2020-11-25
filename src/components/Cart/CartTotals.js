@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { cartTotal } from "../../utils";
+import { useSelector } from "react-redux";
 import CheckDeliveryArea from "./CheckDeliveryArea";
+import { default_delivery_location_value } from "../../state/defaultStates";
 
 const CartTotals = ({
   values,
@@ -12,7 +14,19 @@ const CartTotals = ({
   setIsServiceableArea,
 }) => {
   const total = cartTotal(items);
+  const deliveryLocation = useSelector(
+    (state) => state.fruits.deliveryLocation
+  );
 
+  const isDeliveryLocation = () => {
+    if (
+      deliveryLocation == "" ||
+      deliveryLocation === default_delivery_location_value
+    ) {
+      return false;
+    }
+    return true;
+  };
   return (
     <div className="container">
       <div className="row flex-lg-row-reverse">
@@ -28,18 +42,22 @@ const CartTotals = ({
           <Link to="/checkout">
             <button
               className={
-                isServiceable
+                isDeliveryLocation()
                   ? "btn btn-outline-success text-uppercase mb-3 mt-2 px-5"
                   : "btn btn-outline-disabled border border-disabled text-uppercase mb-3 mt-2 px-5"
               }
               type="button"
-              disabled={!isServiceable}
+              disabled={!isDeliveryLocation()}
             >
               Checkout
             </button>
           </Link>
+          {!isDeliveryLocation() ? (
+            <p className="text-decoration-none text-muted">
+              {default_delivery_location_value}
+            </p>
+          ) : null}
 
-         
           <Link to="/home">
             <button
               className="btn btn-outline-danger text-uppercase mb-3 px-5"
@@ -50,9 +68,9 @@ const CartTotals = ({
             </button>
           </Link>
         </div>
-        <div className="col-lg-8">
+        {/* <div className="col-lg-8">
           <CheckDeliveryArea setIsServiceableArea={setIsServiceableArea} f />
-        </div>
+        </div> */}
       </div>
     </div>
   );

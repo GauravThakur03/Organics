@@ -1,4 +1,4 @@
-import { SET_CATEGORY, SET_CART, INCREASE_QTY, DECREASE_QTY, CLEAR_CART, REMOVE_CART_ITEM, SET_ORDERS, SET_USER, SET_STATUS, SET_SELECTED_CATEGORY} from '../actionTypes';
+import { SET_CATEGORY, SET_CART, INCREASE_QTY, DECREASE_QTY, CLEAR_CART, REMOVE_CART_ITEM, SET_ORDERS, SET_USER, SET_STATUS, SET_SELECTED_CATEGORY, SET_DELIVERY_LOCATION} from '../actionTypes';
 import { checkDeliveryArea, loadCategories, loadOrders, loadUser, processOrder, loadStatus } from '../services/organic';
 
 export function categories() {
@@ -139,3 +139,11 @@ export function checkPincode(pincode) {
 	};
 
   }
+
+  export function setDeliveryLocation(deliveryLocation) {
+	return {
+	    deliveryLocation,
+	    type: SET_DELIVERY_LOCATION
+	};
+
+}

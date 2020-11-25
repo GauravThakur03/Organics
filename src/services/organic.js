@@ -87,3 +87,18 @@ export function checkDeliveryArea(pincode) {
             return Promise.reject(error);
         });
 }
+
+export function loadAreas() {
+    const endPoint = `${API_HOST}/ekart/areas`;
+
+    return fetch(endPoint)
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .catch((error) => {
+            return Promise.reject(error);
+        });
+}

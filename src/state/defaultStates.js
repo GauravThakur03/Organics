@@ -5,3 +5,5 @@ export const default_selected_cat =  {
     prodCount: 0,
     products: [],
   }
+
+  export const default_delivery_location_value = "Choose delivery location";

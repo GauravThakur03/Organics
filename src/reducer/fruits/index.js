@@ -7,7 +7,9 @@ import cart from './cart';
 import categories from './categories';
 import user from './user';
 import status from './status';
-import selectedCategory from './selectedCategory'
+import selectedCategory from './selectedCategory';
+import deliveryLocation from './deliveryLocation';
+
 
 export function makeReducer() {
     const reducers = {
@@ -17,7 +19,8 @@ export function makeReducer() {
     	orders,
         tracking,
         user,
-        status
+        status,
+        deliveryLocation
     };
 
     return combineAndWrapReducers(reducers, Fruits);
