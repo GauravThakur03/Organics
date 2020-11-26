@@ -1,7 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button, Overlay, Popover } from "react-bootstrap";
 import ComboBox from "./ComboBox";
 import { useSelector } from "react-redux";
+import { loadAreas } from "../services/organic";
+import { useDispatch } from "react-redux";
+import { setDeliveryLocation } from "../action-creator/organic";
+import styled from "styled-components";
 
 const PopOver = ({ title }) => {
   const [show, setShow] = useState(false);
@@ -11,13 +15,29 @@ const PopOver = ({ title }) => {
     (state) => state.fruits.deliveryLocation
   );
 
+  const [cities, setCities] = useState([]);
+  const [selectedCity, setSelectedCity] = useState({});
+  const dispatch = useDispatch();
+
   const handleClick = (event) => {
     setShow(!show);
     setTarget(event.target);
   };
 
-  const onChange = (newValue) => {
+  const onChange = (newArea) => {
+    dispatch(setDeliveryLocation(`${newArea}, ${selectedCity.city}`));
     setShow(false);
+  };
+
+  useEffect(() => {
+    loadAreas().then((res) => {
+      const { deliveryArea } = res;
+      setCities(deliveryArea);
+    });
+  }, []);
+
+  const handleCityClick = (selectedCityObject) => {
+    setSelectedCity(selectedCityObject);
   };
 
   return (
@@ -43,7 +63,28 @@ const PopOver = ({ title }) => {
         <Popover id="popover-contained">
           <Popover.Title as="h3">{title}</Popover.Title>
           <Popover.Content>
-            <ComboBox onChange={onChange} />
+            <CitiesContainer className="citiesContainer py-2 mb-1">
+              {cities.map((city, i) => {
+                let activeClass =
+                  city.city === selectedCity.city ? "active" : "";
+                return (
+                  <li key={i} className="my-1">
+                    <span
+                      className={`city-text ${activeClass}`}
+                      onClick={() => {
+                        handleCityClick(city);
+                      }}
+                    >
+                      {city.city}
+                    </span>
+                    {i !== cities.length - 1 ? (
+                      <span className="px-2">|</span>
+                    ) : null}
+                  </li>
+                );
+              })}
+            </CitiesContainer>
+            <ComboBox onChange={onChange} options={selectedCity.area} label="Select city and type area"/>
           </Popover.Content>
         </Popover>
       </Overlay>
@@ -52,3 +93,21 @@ const PopOver = ({ title }) => {
 };
 
 export default PopOver;
+
+const CitiesContainer = styled.div`
+  list-style-type: none;
+  li {
+    display: inline;
+
+    .city-text {
+      cursor: pointer;
+      &:hover {
+        color: var(--mainGreen);
+        text-decoration: underline;
+      }
+    }
+    .active{
+      color: var(--mainGreen);
+    }
+  }
+`;

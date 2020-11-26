@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete, {
   createFilterOptions,
@@ -7,45 +7,20 @@ import Autocomplete, {
 
 import parse from "autosuggest-highlight/parse";
 import match from "autosuggest-highlight/match";
-import { loadAreas } from "../services/organic";
-import { useDispatch } from "react-redux";
-import { setDeliveryLocation } from "../action-creator/organic";
 
 const filter = createFilterOptions();
 
-export default function ComboBox({ onChange }) {
-  const [areas, setAreas] = useState([]);
-  const dispatch = useDispatch();
-  const getAreaList = (areaResponseArray) => {
-    let listOfAreas = [];
-    for (let x of areaResponseArray) {
-      let city = x.city;
-      for (let area of x.area) {
-        listOfAreas.push(`${area}, ${city}`);
-      }
-    }
-
-    return listOfAreas;
-  };
-
-  useEffect(() => {
-    loadAreas().then((res) => {
-      const { deliveryArea } = res;
-      setAreas(getAreaList(deliveryArea));
-    });
-  }, []);
-
+export default function ComboBox({ onChange, options = [], label="" }) {
   return (
     <Autocomplete
       id="areasAutoComplete"
-      options={areas}
+      options={options}
       getOptionLabel={(option) => option}
       onChange={(event, newValue) => {
-        dispatch(setDeliveryLocation(newValue));
-        onChange();
+        onChange(newValue);
       }}
       renderInput={(params) => (
-        <TextField {...params} label="Type delivery area" variant="outlined" />
+        <TextField {...params} label={label} variant="outlined" />
       )}
       getOptionDisabled={(option) => option.includes("Sorry")}
       filterOptions={(options, params) => {
