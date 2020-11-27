@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import CategoryStickyBar from "./CategoryStickyBar";
+import SearchCategory from "./SearchCategory";
 import SelectLanguage from "./SelectLanguage";
 import UserLocation from "./UserLocation";
 const NavBar = () => {
@@ -21,6 +22,7 @@ const NavBar = () => {
           MAMIDIKAYALU
         </Link>
         <UserLocation />
+        
         <button
           className="navbar-toggler collapsed"
           type="button"
@@ -35,7 +37,7 @@ const NavBar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
+        <SearchCategory/>
         <div
           className={`collapse navbar-collapse ${
             mobileNavToggle ? "show" : ""

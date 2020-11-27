@@ -10,31 +10,43 @@ import match from "autosuggest-highlight/match";
 
 const filter = createFilterOptions();
 
-export default function ComboBox({ onChange, options = [], label="" }) {
+export default function ComboBox({
+  onChange,
+  label = "",
+  displayProp,
+  valueProp,
+  options = [{[displayProp]:'',[valueProp]:null}],
+}) {
   return (
     <Autocomplete
       id="areasAutoComplete"
       options={options}
-      getOptionLabel={(option) => option}
+      getOptionLabel={(option) => option[displayProp]}
       onChange={(event, newValue) => {
         onChange(newValue);
       }}
       renderInput={(params) => (
         <TextField {...params} label={label} variant="outlined" />
       )}
-      getOptionDisabled={(option) => option.includes("Sorry")}
+      getOptionDisabled={(option) =>
+        option[valueProp] === null || option[valueProp] === undefined
+      }
       filterOptions={(options, params) => {
         const filtered = filter(options, params);
 
         if (filtered.length === 0 && params.inputValue !== "") {
-          filtered.push("Sorry, we are not delivering in your area.");
+          console.log(params, filtered);
+          filtered.push({
+            [displayProp]: "Sorry, we are not delivering in your area.",
+            [valueProp]: null,
+          });
         }
 
         return filtered;
       }}
       renderOption={(option, { inputValue }) => {
-        const matches = match(option, inputValue);
-        const parts = parse(option, matches);
+        const matches = match(option[displayProp], inputValue);
+        const parts = parse(option[displayProp], matches);
 
         return (
           <div>

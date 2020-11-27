@@ -16,7 +16,7 @@ const PopOver = ({ title }) => {
   );
 
   const [cities, setCities] = useState([]);
-  const [selectedCity, setSelectedCity] = useState({});
+  const [selectedCity, setSelectedCity] = useState({ city: "", area: [] });
   const dispatch = useDispatch();
 
   const handleClick = (event) => {
@@ -24,8 +24,8 @@ const PopOver = ({ title }) => {
     setTarget(event.target);
   };
 
-  const onChange = (newArea) => {
-    dispatch(setDeliveryLocation(`${newArea}, ${selectedCity.city}`));
+  const onChange = ({area}) => {
+    dispatch(setDeliveryLocation(`${area}, ${selectedCity.city}`));
     setShow(false);
   };
 
@@ -84,7 +84,16 @@ const PopOver = ({ title }) => {
                 );
               })}
             </CitiesContainer>
-            <ComboBox onChange={onChange} options={selectedCity.area} label="Select city and type area"/>
+            <ComboBox
+              onChange={onChange}
+              options={selectedCity.area.map((a, i) => {
+                const { area, id = !+1 } = a;
+                return { area, id };
+              })}
+              displayProp="area"
+              valueProp="id"
+              label="Select city and type area"
+            />
           </Popover.Content>
         </Popover>
       </Overlay>
@@ -106,7 +115,7 @@ const CitiesContainer = styled.div`
         text-decoration: underline;
       }
     }
-    .active{
+    .active {
       color: var(--mainGreen);
     }
   }
