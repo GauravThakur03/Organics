@@ -33,4 +33,11 @@ const SearchCategoryWrapper = styled.div`
   *{
     color:white !important;
   }
+  .MuiOutlinedInput-notchedOutline {
+    border-color: rgb(255, 255, 255, 0.23) !important;
+  }
+  .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: white !important;
+  }
+  
 `;
