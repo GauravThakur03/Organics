@@ -1,46 +1,54 @@
-:root{
-  --mainGreen:#28a745;
+:root {
+  --mainGreen: #28a745;
   --mainWhite: #f3f3f3;
-  --mainDark:#232528;
-  --mainYellow:#ffa400;
+  --mainDark: #232528;
+  --mainYellow: #ffa400;
 }
-body{
+body {
   background: var(--mainWhite) !important;
 }
-.min-height{
-  min-height:calc(100vh - 140px);
+.min-height {
+  min-height: calc(100vh - 140px);
 }
-.bg-img{
-  background-image: url('images/banner4.jpg');
+.bg-img {
+  background-image: url("images/banner4.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
-.top-100{
-  top:100%;
+.top-100 {
+  top: 100%;
 }
-.squeezed .catItemIcon{
+.squeezed .catItemIcon {
   display: none !important;
 }
-.active .catItemIcon{
+.active .catItemIcon {
   background-color: var(--mainGreen);
 }
-.rec-item-wrapper{
+.rec-item-wrapper {
   height: 100% !important;
 }
-.rec-dot{
+.rec-dot {
   box-shadow: none !important;
   border: 1px solid grey !important;
 }
-.rec-dot_active{
-  background-color: var(--mainGreen) !important;
- 
-}
-.rec-arrow-left:hover, .rec-arrow-right:hover{
+.rec-dot_active {
   background-color: var(--mainGreen) !important;
 }
-.rec-arrow-left, .rec-arrow-right{
+.rec-arrow-left:hover,
+.rec-arrow-right:hover {
+  background-color: var(--mainGreen) !important;
+}
+.rec-arrow-left,
+.rec-arrow-right {
   background-color: transparent !important;
 }
-.popover{
-  width:300px;
+.popover {
+  width: 300px;
 }
+.MuiOutlinedInput-notchedOutline {
+  border-color: rgb(255, 255, 255, 0.23) !important;
+}
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: white !important;
+}
+

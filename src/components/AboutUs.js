@@ -5,7 +5,7 @@ const AboutUs = () => {
       <div className="bg-img position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
         <div className="col-md-5 p-lg-5 mx-auto my-5">
           <h1 className="display-4 font-weight-normal text-white">MAMIDIKAYALU</h1>
-          <p class="lead font-weight-normal"></p>
+          <p className="lead font-weight-normal"></p>
         </div>
       </div>
       <div className="container-fluid min-height py-4">

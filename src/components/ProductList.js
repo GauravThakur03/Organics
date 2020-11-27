@@ -14,8 +14,8 @@ const ProductList = ({ products, catID }) => {
 
   return (
     <div className="container">
-      {rows.map((row) => (
-        <div className="row">
+      {rows.map((row, i) => (
+        <div className="row" key={i}>
           {row.map((product, i) => (
             <Product product={product} key={i} catID={catID} />
           ))}

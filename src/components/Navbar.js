@@ -1,16 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import CategoryStickyBar from "./CategoryStickyBar";
 import SearchCategory from "./SearchCategory";
-import SelectLanguage from "./SelectLanguage";
+
 import UserLocation from "./UserLocation";
+import useWindowResize from "./WindowResizedHook";
+import $ from "jquery";
+import NavActions from "./NavAction";
 const NavBar = () => {
   const [mobileNavToggle, setMobileNavToggle] = useState(false);
-
+  let headerHeight = $("#appHeader").outerHeight() || null;
+  useEffect(() => {
+    if (headerHeight !== $("#appHeader").outerHeight()) {
+      headerHeight = $("#appHeader").outerHeight();
+      $("body").css("padding-top", headerHeight + "px");
+    }
+  }, [headerHeight]);
+  useWindowResize(() => {
+    let newHeight = $("#appHeader").outerHeight();
+    if (newHeight !== headerHeight) {
+      $("body").css("padding-top", newHeight + "px");
+    }
+  });
   return (
-    <div className="fixed-top">
-      <NavWrapper className="navbar navbar-expand-lg navbar-dark">
+    <div className="fixed-top" id="appHeader">
+      <NavWrapper className="navbar navbar-expand-xxl navbar-dark">
         <Link to="/home" className="navbar-brand d-flex">
           <img
             src="icons/logo.png"
@@ -22,7 +37,10 @@ const NavBar = () => {
           MAMIDIKAYALU
         </Link>
         <UserLocation />
-        
+        <SearchCategory />
+        <div className="d-none d-md-block">
+          <NavActions />
+        </div>
         <button
           className="navbar-toggler collapsed"
           type="button"
@@ -37,48 +55,32 @@ const NavBar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <SearchCategory/>
+
         <div
           className={`collapse navbar-collapse ${
             mobileNavToggle ? "show" : ""
           }`}
           id="navbarsExampleDefault"
         >
-          <ul className="navbar-nav ml-40">
-            <li className="nav-item">
-              <Link to="/home" className="nav-link">
+          <ul className="navbar-nav ml-40 flex-md-row justify-content-end">
+            <li className="nav-item px-md-1 mr-md-1">
+              <Link to="/home" className="nav-link text-right">
                 Home <span className="sr-only">(current)</span>
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/aboutus" className="nav-link">
+            <li className="nav-item px-md-2 mr-md-2">
+              <Link to="/aboutus" className="nav-link text-right">
                 About us
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/contactus" className="nav-link">
+              <Link to="/contactus" className="nav-link text-right">
                 Contact us
               </Link>
             </li>
           </ul>
-          <div className="ml-auto">
-            <SelectLanguage />
-            <Link to="orders">
-              <button className="btn btn-success mr-2">
-                <span className="mr-2">
-                  <i className="fas fa-truck"></i>
-                </span>
-                Track Order
-              </button>
-            </Link>
-            <Link to="cart">
-              <button className="btn btn-success mr-2">
-                <span className="mr-2">
-                  <i className="fas fa-shopping-cart"></i>
-                </span>
-                My Cart
-              </button>
-            </Link>
+          <div className="d-md-none">
+            <NavActions />
           </div>
         </div>
       </NavWrapper>
