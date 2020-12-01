@@ -1,26 +1,34 @@
 import React from "react";
 import { Tab, Tabs } from "react-bootstrap";
-import ProductList from "./ProductList";
-
+import Login from "./Login";
+import styled from 'styled-components'
 import "./TabPanel.css";
+import Register from "./Register";
 
-
-const TabPanel = ({categories}) => {
+const TabPanel = ({closeModal}) => {
   return (
-    <div className="tab-panel">
-      <Tabs defaultActiveKey={categories[0].catID} id="uncontrolled-tab-example">
-        {
-            categories.map((category) => {
-                return (
-                  <Tab eventKey={category.catID} title={category.catName} key={category.catID}>
-                    <ProductList products={category.products} catID={category.catID}/>
-                  </Tab>
-                )
-            })
-        }
+    <CustomWrapper className="tab-panel">
+      <Tabs defaultActiveKey="login" id="uncontrolled-tab-example">
+        <Tab eventKey="login" title="Login" key="login">
+          <Login closeModal={closeModal}/>
+        </Tab>
+        <Tab eventKey="register" title="Register" key="register">
+          <Register closeModal={closeModal}/>
+        </Tab>
       </Tabs>
-    </div>
+    </CustomWrapper>
   );
 };
 
 export default TabPanel;
+
+const CustomWrapper = styled.div`
+  .nav{
+    justify-content:center;
+    border-bottom:none
+  }
+  .tab-content:{
+    padding:16px
+  }
+ 
+`

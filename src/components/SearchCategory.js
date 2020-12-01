@@ -10,7 +10,7 @@ const SearchCategory = () => {
   const dispatch = useDispatch();
   let history = useHistory();
   return (
-    <SearchCategoryWrapper>
+    <SearchCategoryWrapper className="m-1 m-md-0">
       <ComboBox
         style={{ color: "white" }}
         label="Search category"

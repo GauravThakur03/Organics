@@ -8,8 +8,10 @@ import UserLocation from "./UserLocation";
 import useWindowResize from "./WindowResizedHook";
 import $ from "jquery";
 import NavActions from "./NavAction";
+
 const NavBar = () => {
-  const [mobileNavToggle, setMobileNavToggle] = useState(false);
+  // const [mobileNavToggle, setMobileNavToggle] = useState(false);
+  
   let headerHeight = $("#appHeader").outerHeight() || null;
   useEffect(() => {
     if (headerHeight !== $("#appHeader").outerHeight()) {
@@ -23,6 +25,7 @@ const NavBar = () => {
       $("body").css("padding-top", newHeight + "px");
     }
   });
+
   return (
     <div className="fixed-top" id="appHeader">
       <NavWrapper className="navbar navbar-expand-xxl navbar-dark">
@@ -36,12 +39,11 @@ const NavBar = () => {
           />
           MAMIDIKAYALU
         </Link>
+
         <UserLocation />
         <SearchCategory />
-        <div className="d-none d-md-block">
-          <NavActions />
-        </div>
-        <button
+        <NavActions/>
+        {/* <button
           className="navbar-toggler collapsed"
           type="button"
           data-toggle="collapse"
@@ -54,9 +56,9 @@ const NavBar = () => {
           }}
         >
           <span className="navbar-toggler-icon"></span>
-        </button>
+        </button> */}
 
-        <div
+        {/* <div
           className={`collapse navbar-collapse ${
             mobileNavToggle ? "show" : ""
           }`}
@@ -68,23 +70,14 @@ const NavBar = () => {
                 Home <span className="sr-only">(current)</span>
               </Link>
             </li>
-            <li className="nav-item px-md-2 mr-md-2">
-              <Link to="/aboutus" className="nav-link text-right">
-                About us
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/contactus" className="nav-link text-right">
-                Contact us
-              </Link>
-            </li>
           </ul>
           <div className="d-md-none">
             <NavActions />
           </div>
-        </div>
+        </div> */}
       </NavWrapper>
       <CategoryStickyBar />
+      
     </div>
   );
 };

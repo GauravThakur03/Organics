@@ -49,7 +49,7 @@ const PopOver = ({ title }) => {
         className="dropdown-toggle"
       >
         <i className="fas fa-map-marker-alt"></i>
-        <span className="px-2">{deliveryLocation}</span>
+        <span className="px-2 d-none d-md-inline">{deliveryLocation}</span>
       </Button>
 
       <Overlay

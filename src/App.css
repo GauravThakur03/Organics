@@ -46,3 +46,19 @@ body {
   width: 300px;
 }
 
+@media only screen and (min-width: 992px) {
+  .customModal {
+    padding: 0px !important;
+  }
+  .customModal .modal-content {min-height: 100vh;}
+  .customModal .modal-dialog {
+    margin-left: auto !important;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+  }
+}
+.customModal .modal-header {
+  padding: 0px;
+  padding-right: 10px;
+  border: none;
+}
