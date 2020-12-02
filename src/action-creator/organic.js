@@ -82,9 +82,9 @@ const defaultUserObject = {
 	state: '',
 	city:''
 }
-export function user() {
+export function user(mobileNumber) {
 	return (dispatch) => {
-	  return loadUser(arguments[1])
+	  return loadUser(mobileNumber)
 		.then((user) => {
 		  dispatch({
 			type: SET_USER,

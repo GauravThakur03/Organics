@@ -1,10 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ModalComponent from "./ModalComponent";
-import Login from "./Login";
 import TabPanel from "./TabPanel";
+import { useSelector } from "react-redux";
+
 const NavActions = () => {
   const [modalShow, setModalShow] = React.useState(false);
+  const user = useSelector((state) => state.fruits.user);
+
+  React.useEffect(() => {
+    user?.name && setModalShow(false);
+  }, [user?.name]);
 
   return (
     <div className="ml-auto">
@@ -28,16 +34,20 @@ const NavActions = () => {
           <i className="fas fa-shopping-cart" title="My Cart"></i>
         </button>
       </Link>
+      {user?.name ? (
+        <span className="text-white p-1 m-1">{`Welcome, ${user.name}`}</span>
+      ) : (
+        <button
+          className="btn btn-success mr-2"
+          onClick={() => {
+            setModalShow(true);
+          }}
+        >
+          <span className="mr-2  d-none d-md-inline">Login</span>
+          <i className="fas fa-sign-in-alt" title="Login"></i>
+        </button>
+      )}
 
-      <button
-        className="btn btn-success mr-2"
-        onClick={() => {
-          setModalShow(true);
-        }}
-      >
-        <span className="mr-2  d-none d-md-inline">Login</span>
-        <i className="fas fa-sign-in-alt" title="Login"></i>
-      </button>
       <ModalComponent
         className="customModal"
         show={modalShow}

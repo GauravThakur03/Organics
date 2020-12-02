@@ -27,8 +27,8 @@ const CustomWrapper = styled.div`
     justify-content:center;
     border-bottom:none
   }
-  .tab-content:{
-    padding:16px
+  .tab-content{
+    padding:20px
   }
  
 `

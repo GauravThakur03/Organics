@@ -20,7 +20,7 @@ class Checkout extends Component {
   onFormChange(e) {
     const fieldName = e.target.name;
     const val = e.target.value;
-    if (fieldName === "phone" && val) {
+    if (fieldName === "phone" && val && !this.props.user.phone) {
       if (val.match(/\d/g).length === 10) {
         this.props.loadUser(val);
         this.setState({phone: val});
@@ -31,6 +31,7 @@ class Checkout extends Component {
   }
   render() {
     const total = cartTotal(this.props.cart.cartItems);
+    console.log(this.props.user);
     return (
       <div className="container">
         <div className="row py-5">

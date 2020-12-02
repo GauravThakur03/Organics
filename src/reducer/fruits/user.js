@@ -1,7 +1,7 @@
 import { SET_USER } from '../../actionTypes';
 
 const defaultState = {
-    phone:"",
+    phone:'',
     name: '',
     email:'',
     address1: '',

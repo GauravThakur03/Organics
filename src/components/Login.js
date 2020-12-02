@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { getOtp} from "../services/organic";
+import {useDispatch} from "react-redux";
+import { user } from "../action-creator/organic";
 
 const Login = () => {
   const {
@@ -9,18 +12,44 @@ const Login = () => {
     errors,
     formState,
     getValues,
-  } = useForm({ mode: "onChange" });
-  const userNamePattern = /^[0-9]{10}$/;
-  const onSubmit = (data) => console.log(data);
+  } = useForm({ mode: "all" });
 
+
+  const userNamePattern = /^[0-9]{10}$/;
+  const otpPattern = /^[0-9]{6}$/;
+
+  const onSubmit = (data) => {
+    dispatch(user(data.username));
+  };
+  const [isValidPassword, setIsValidPassword] = useState(false);
   const [isValidMobileNumber, setIsValidMobileNumber] = useState(false);
+  const [isValidOtp, setIsValidOtp] = useState(false);
+  const [otpSent, setOtpSent] = useState(false);
+  const [otpBtnClicked, setOtpBtnClicked] = useState(false);
+
+  const dispatch = useDispatch();
 
   const onChange = (event) => {
-    if (
-      event.target.name === "username" &&
-      userNamePattern.test(event.target.value)
-    ) {
-      setIsValidMobileNumber(true);
+    if (event.target.name === "username") {
+      if (userNamePattern.test(event.target.value)) {
+        setIsValidMobileNumber(true);
+      } else {
+        setIsValidMobileNumber(false);
+      }
+    }
+    if (event.target.name === "otp") {
+      if (otpPattern.test(event.target.value)) {
+        setIsValidOtp(true);
+      } else {
+        setIsValidOtp(false);
+      }
+    }
+    if (event.target.name === "password") {
+      if (event.target.value) {
+        setIsValidPassword(true);
+      } else {
+        setIsValidPassword(false);
+      }
     }
   };
   const multipleValues = getValues(["username", "password", "otp"]);
@@ -58,7 +87,7 @@ const Login = () => {
             className="form-control"
             name="password"
             placeholder="Enter your password"
-            ref={register({ required: true })}
+            ref={register()}
             defaultValue=""
           />
           {errors.password && (
@@ -66,7 +95,7 @@ const Login = () => {
           )}
         </div>
         <div className="d-flex justify-content-center m-2">OR</div>
-        <div className="form-group d-flex justify-content-center">
+        <div className="form-group d-flex justify-content-center flex-column">
           <button
             className={
               isValidMobileNumber
@@ -74,30 +103,43 @@ const Login = () => {
                 : "btn btn-light w-100"
             }
             disabled={!isValidMobileNumber}
+            onClick={() => {
+              setOtpBtnClicked(true);
+              getOtp(multipleValues.username).then((res) => {
+                setOtpSent(res.otp);
+              });
+            }}
           >
             Get OTP
           </button>
+          {otpBtnClicked && isValidMobileNumber ? (
+            otpSent ? (
+              <div className="help-block text-success m-1">OTP Sent.</div>
+            ) : (
+              <div className="help-block text-danger m-1">
+                This mobile number is not registered, please register.
+              </div>
+            )
+          ) : null}
         </div>
 
         <div className="form-group">
           <label htmlFor="otp">OTP</label>
           <input
-            type="number"
             className="form-control"
             maxLength="6"
             minLength="6"
             placeholder="Enter OTP"
             name="otp"
-            ref={register({ required: true, pattern: /^[0-9]{6}$/ })}
+            ref={register({ pattern: otpPattern })}
             defaultValue=""
           />
           {errors.otp && (
-            <div className="help-block text-danger">Incorrect OTP</div>
+            <div className="help-block text-danger m-1">Incorrect OTP</div>
           )}
         </div>
         <div className="form-group d-flex justify-content-center">
-          {isValidMobileNumber &&
-          (multipleValues.otp || multipleValues.password) ? (
+          {isValidMobileNumber && (isValidPassword || isValidOtp) ? (
             <input
               type="submit"
               className="btn btn-success w-100"

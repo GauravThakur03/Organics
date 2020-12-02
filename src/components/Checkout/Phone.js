@@ -1,10 +1,11 @@
 import React from "react";
+import { Field } from "formik";
 const Phone = () => {
   return (
     <>
       <h4 className="mb-3">Mobile number</h4>
 
-      <input
+      <Field
         type="text"
         maxLength="10"
         name="phone"

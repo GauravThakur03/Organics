@@ -1,104 +1,119 @@
-import { API_HOST } from '../config';
+import { API_HOST } from "../config";
 
 export function loadCategories() {
-    const endPoint = `${API_HOST}/ekart/categories`;
+  const endPoint = `${API_HOST}/ekart/categories`;
 
-    return fetch(endPoint)
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw response;
-        })
-        .catch((error) => {
-            return Promise.reject(error);
-        });
+  return fetch(endPoint)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw response;
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
 }
 
 export function loadOrders() {
-    const endPoint = `${API_HOST}/ekart/orders`;
+  const endPoint = `${API_HOST}/ekart/orders`;
 
-    return fetch(endPoint)
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw response;
-        })
-        .catch((error) => {
-            return Promise.reject(error);
-        });
+  return fetch(endPoint)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw response;
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
 }
 
 export function loadUser(phone) {
-    const endPoint = `${API_HOST}/ekart/users/${phone}`;
-    return fetch(endPoint)
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw response;
-        })
-        .catch((error) => {
-            return Promise.reject(error);
-        });
+  const endPoint = `${API_HOST}/ekart/users/${phone}`;
+  return fetch(endPoint)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw response;
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
+}
+
+export function getOtp(phone) {
+  const endPoint = `${API_HOST}/ekart/getotp/${phone}`;
+  console.log(endPoint);
+  return fetch(endPoint)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw response;
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
 }
 
 export function loadStatus(phone) {
-    const endPoint = `${API_HOST}/ekart/getstatus/${phone}`;
-    return fetch(endPoint)
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw response;
-        })
-        .catch((error) => {
-            return Promise.reject(error);
-        });
+  const endPoint = `${API_HOST}/ekart/getstatus/${phone}`;
+  return fetch(endPoint)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw response;
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
 }
 
 export function processOrder(order, phone) {
-    const endPoint = `${API_HOST}/ekart/processOrder`;
+  const endPoint = `${API_HOST}/ekart/processOrder`;
 
-    return fetch(endPoint, {
-        body: JSON.stringify(order),
-        method: 'post'
-    })
+  return fetch(endPoint, {
+    body: JSON.stringify(order),
+    method: "post",
+  })
     .then((response) => response.json())
     .catch((error) => {
-        return error.json().then((json) => {
-            throw json;
-        });
+      return error.json().then((json) => {
+        throw json;
+      });
     });
 }
 
 export function checkDeliveryArea(pincode) {
-    const endPoint = `${API_HOST}/ekart/deliverycheck/${pincode}`;
-    
-    return fetch(endPoint)
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw response;
-        })
-        .catch((error) => {
-            return Promise.reject(error);
-        });
+  const endPoint = `${API_HOST}/ekart/deliverycheck/${pincode}`;
+
+  return fetch(endPoint)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw response;
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
 }
 
 export function loadAreas() {
-    const endPoint = `${API_HOST}/ekart/areas`;
+  const endPoint = `${API_HOST}/ekart/areas`;
 
-    return fetch(endPoint)
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw response;
-        })
-        .catch((error) => {
-            return Promise.reject(error);
-        });
+  return fetch(endPoint)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw response;
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
 }
