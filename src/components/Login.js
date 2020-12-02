@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { getOtp} from "../services/organic";
-import {useDispatch} from "react-redux";
+import { getOtp } from "../services/organic";
+import { useDispatch } from "react-redux";
 import { user } from "../action-creator/organic";
 
 const Login = () => {
@@ -13,7 +13,6 @@ const Login = () => {
     formState,
     getValues,
   } = useForm({ mode: "all" });
-
 
   const userNamePattern = /^[0-9]{10}$/;
   const otpPattern = /^[0-9]{6}$/;

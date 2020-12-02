@@ -72,7 +72,7 @@ export function orders() {
   };
 }
 
-const defaultUserObject = {
+export const defaultUserObject = {
     phone:"",
     name: '',
     address1: '',
@@ -82,6 +82,7 @@ const defaultUserObject = {
 	state: '',
 	city:''
 }
+
 export function user(mobileNumber) {
 	return (dispatch) => {
 	  return loadUser(mobileNumber)
@@ -90,6 +91,7 @@ export function user(mobileNumber) {
 			type: SET_USER,
 			user: user || defaultUserObject,
 		  });
+		  localStorage.setItem("mamidikayaluUser", JSON.stringify(user));
 		})
 		.catch((error) => {
 		  return Promise.reject(error);

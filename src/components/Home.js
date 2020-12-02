@@ -7,6 +7,11 @@ import Section from "./Section";
 class Home extends Component {
   componentDidMount() {
     this.props.loadCategories();
+    let user = localStorage.getItem("mamidikayaluUser");
+    console.log(user);
+    if (user) {
+      this.props.setUser(JSON.parse(user));
+    }
   }
 
   getRows(categories = []) {
@@ -54,7 +59,9 @@ class Home extends Component {
           ))}
         </Section>
         <Section title="Deal of the Day">
-          <CarouselContainer items={this.getFilteredProducts(categories, "prodDeals")} />
+          <CarouselContainer
+            items={this.getFilteredProducts(categories, "prodDeals")}
+          />
         </Section>
       </main>
     );
