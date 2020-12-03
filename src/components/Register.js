@@ -1,149 +1,138 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../action-creator/organic";
 
-export default class Register extends React.Component {
-  constructor(props) {
-    super(props);
+const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    errors,
+    formState,
+    getValues,
+  } = useForm({ mode: "all" });
+  const userNamePattern = /^[0-9]{10}$/;
+  const emailIdPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-    this.state = {
-      user: {
-        fullName: "",
-        email: "",
-        username: "",
-        password: "",
-        confirmPassword: "",
-      },
-      submitted: false,
-    };
+  const { isValid } = formState;
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  const dispatch = useDispatch();
+  const [registrationMsg, setRegistrationMsg] = useState("");
 
-  handleChange(event) {
-    const { name, value } = event.target;
-    const { user } = this.state;
-    this.setState({
-      user: {
-        ...user,
-        [name]: value,
-      },
-    });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-
-    this.setState({ submitted: true });
-    const { user } = this.state;
-    if (user.fullName && user.email && user.username && user.password) {
-      this.props.register(user);
-    }
-  }
-
-  render() {
-    const { registering } = this.props;
-    const { user, submitted } = this.state;
-    return (
-      <div className="col-md-9 col-md-offset-3 mx-auto">
-        <form name="form" onSubmit={this.handleSubmit}>
-          <div
-            className={
-              "form-group" + (submitted && !user.fullName ? " has-error" : "")
-            }
-          >
-            <label htmlFor="fullName">Full Name</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Enter full name"
-              name="fullName"
-              value={user.fullName}
-              onChange={this.handleChange}
-            />
-            {submitted && !user.fullName && (
-              <div className="help-block">Full Name is required</div>
-            )}
-          </div>
-
-          <div
-            className={
-              "form-group" + (submitted && !user.username ? " has-error" : "")
-            }
-          >
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              className="form-control"
-              name="username"
-              placeholder="Enter 10 digit mobile number"
-              value={user.username}
-              onChange={this.handleChange}
-            />
-            {submitted && !user.username && (
-              <div className="help-block">Username is required</div>
-            )}
-          </div>
-          <div
-            className={
-              "form-group" + (submitted && !user.password ? " has-error" : "")
-            }
-          >
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              name="password"
-              value={user.password}
-              onChange={this.handleChange}
-            />
-            {submitted && !user.password && (
-              <div className="help-block">Password is required</div>
-            )}
-          </div>
-          <div
-            className={
-              "form-group" + (submitted && !user.password ? " has-error" : "")
-            }
-          >
-            <label htmlFor="password">Confirm Password</label>
-            <input
-              type="text"
-              className="form-control"
-              name="confirmpassword"
-              value={user.confirmPassword}
-              onChange={this.handleChange}
-            />
-            {submitted && !user.confirmPassword && (
-              <div className="help-block">Password doesn't match</div>
-            )}
-          </div>
-          <div
-            className={
-              "form-group" + (submitted && !user.email ? " has-error" : "")
-            }
-          >
-            <label htmlFor="email">Email address (Optional)</label>
-            <input
-              type="text"
-              className="form-control"
-              name="email"
-              placeholder="Enter valid email address"
-              value={user.email}
-              onChange={this.handleChange}
-            />
-            {submitted && !user.email && (
-              <div className="help-block">Email Address is required</div>
-            )}
-          </div>
-          <div className="form-group d-flex justify-content-center">
-            <button className="btn btn-success">Register</button>
-            {registering && (
-              <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            )}
-          </div>
-        </form>
-      </div>
+  const onSubmit = (data) => {
+    const { password1, ..._data } = data;
+    dispatch(
+      registerUser(_data, (res) => {
+        setRegistrationMsg(res.message);
+        if (res.message.includes("Success")) reset();
+      })
     );
-  }
-}
+  };
+
+  const RegMsgstyle = registrationMsg.includes("Success")
+    ? "text-success"
+    : "text-danger";
+  return (
+    <div className="col-md-9 col-md-offset-3 mx-auto">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {registrationMsg ? (
+          <div className={`help-block ${RegMsgstyle}`}>{registrationMsg}</div>
+        ) : null}
+        <div className="form-group">
+          <label htmlFor="Name">Full Name</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Enter full name"
+            name="Name"
+            ref={register({ required: true })}
+            defaultValue=""
+          />
+          {errors.Name && (
+            <div className="help-block text-danger">Full Name is required</div>
+          )}
+        </div>
+        <div className="form-group">
+          <label htmlFor="userName">Username</label>
+          <input
+            className="form-control"
+            name="userName"
+            placeholder="Enter registered moble number"
+            ref={register({ required: true, pattern: userNamePattern })}
+            defaultValue=""
+          />
+          {/* errors will return when field validation fails  */}
+          {errors.userName && (
+            <div className="help-block text-danger">
+              Please enter 10 digit mobile number
+            </div>
+          )}
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            className="form-control"
+            name="password"
+            placeholder="Enter new password"
+            ref={register({ required: true })}
+            defaultValue=""
+          />
+          {errors.password && (
+            <div className="help-block text-danger">Password is required</div>
+          )}
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Confirm Password</label>
+          <input
+            type="text"
+            className="form-control"
+            name="password1"
+            placeholder="Re-type password"
+            ref={register({
+              required: true,
+              validate: (value) => value === getValues("password"),
+            })}
+            defaultValue=""
+          />
+          {errors.password1 && (
+            <div className="help-block text-danger">Password doesn't match</div>
+          )}
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email address (Optional)</label>
+          <input
+            type="text"
+            className="form-control"
+            name="email"
+            placeholder="Enter valid email address"
+            ref={register({ pattern: emailIdPattern })}
+            defaultValue=""
+          />
+          {errors.email && (
+            <div className="help-block text-danger">Invalid email address</div>
+          )}
+        </div>
+        <div className="form-group d-flex justify-content-center">
+          {isValid ? (
+            <input
+              type="submit"
+              className="btn btn-success w-100"
+              value="Register"
+            />
+          ) : (
+            <input
+              type="submit"
+              className="btn btn-light w-100"
+              value="Register"
+              disabled
+            />
+          )}
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default Register;

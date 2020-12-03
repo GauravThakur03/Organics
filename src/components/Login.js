@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { getOtp } from "../services/organic";
 import { useDispatch } from "react-redux";
-import { user } from "../action-creator/organic";
+import { login } from "../action-creator/organic";
 
 const Login = () => {
   const {
@@ -18,7 +18,11 @@ const Login = () => {
   const otpPattern = /^[0-9]{6}$/;
 
   const onSubmit = (data) => {
-    dispatch(user(data.username));
+    dispatch(
+      login(data, (error) => {
+        setLoginErrorMsg(error.message);
+      })
+    );
   };
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [isValidMobileNumber, setIsValidMobileNumber] = useState(false);
@@ -26,10 +30,12 @@ const Login = () => {
   const [otpSent, setOtpSent] = useState(false);
   const [otpBtnClicked, setOtpBtnClicked] = useState(false);
 
+  const [loginErrorMsg, setLoginErrorMsg] = useState("");
+
   const dispatch = useDispatch();
 
   const onChange = (event) => {
-    if (event.target.name === "username") {
+    if (event.target.name === "userName") {
       if (userNamePattern.test(event.target.value)) {
         setIsValidMobileNumber(true);
       } else {
@@ -51,7 +57,7 @@ const Login = () => {
       }
     }
   };
-  const multipleValues = getValues(["username", "password", "otp"]);
+  const multipleValues = getValues(["userName", "password", "otp"]);
   return (
     <div className="col-md-9 col-md-offset-3 mx-auto">
       {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
@@ -63,20 +69,23 @@ const Login = () => {
       >
         {/* register your input into the hook by invoking the "register" function */}
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="userName">Username</label>
           <input
             className="form-control"
-            name="username"
+            name="userName"
             placeholder="Enter registered moble number"
             ref={register({ required: true, pattern: userNamePattern })}
             defaultValue=""
           />
           {/* errors will return when field validation fails  */}
-          {errors.username && (
+          {errors.userName && (
             <div className="help-block text-danger">
               Please enter 10 digit mobile number
             </div>
           )}
+          {loginErrorMsg ? (
+            <div className="help-block text-danger">{loginErrorMsg}</div>
+          ) : null}
         </div>
 
         <div className="form-group">
@@ -104,7 +113,7 @@ const Login = () => {
             disabled={!isValidMobileNumber}
             onClick={() => {
               setOtpBtnClicked(true);
-              getOtp(multipleValues.username).then((res) => {
+              getOtp(multipleValues.userName).then((res) => {
                 setOtpSent(res.otp);
               });
             }}

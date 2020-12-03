@@ -44,6 +44,48 @@ export function loadUser(phone) {
     });
 }
 
+export function callRegisterApi(data) {
+  const endPoint = `${API_HOST}/ekart/userRegister`;
+
+  return fetch(endPoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw response;
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
+}
+
+export function callLoginApi(data) {
+  const endPoint = `${API_HOST}/ekart/getLogin`;
+
+  return fetch(endPoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw response;
+    })
+    .catch((error) => {
+      return Promise.reject(error);
+    });
+}
+
 export function getOtp(phone) {
   const endPoint = `${API_HOST}/ekart/getotp/${phone}`;
   console.log(endPoint);
