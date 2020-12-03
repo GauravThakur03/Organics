@@ -19,6 +19,7 @@ import {
   processOrder,
   loadStatus,
   callLoginApi,
+  callRegisterApi
 } from "../services/organic";
 
 export function categories() {
@@ -112,6 +113,18 @@ export function user(mobileNumber) {
           user: user || defaultUserObject,
         });
         localStorage.setItem("mamidikayaluUser", JSON.stringify(user));
+      })
+      .catch((error) => {
+        return Promise.reject(error);
+      });
+  };
+}
+
+export function registerUser(data, cb) {
+  return (dispatch) => {
+    return callRegisterApi(data)
+      .then((msg = {}) => {
+        cb(msg);
       })
       .catch((error) => {
         return Promise.reject(error);
