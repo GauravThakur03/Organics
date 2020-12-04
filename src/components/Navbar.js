@@ -11,7 +11,7 @@ import NavActions from "./NavAction";
 
 const NavBar = () => {
   // const [mobileNavToggle, setMobileNavToggle] = useState(false);
-  
+
   let headerHeight = $("#appHeader").outerHeight() || null;
   useEffect(() => {
     if (headerHeight !== $("#appHeader").outerHeight()) {
@@ -42,42 +42,9 @@ const NavBar = () => {
 
         <UserLocation />
         <SearchCategory />
-        <NavActions/>
-        {/* <button
-          className="navbar-toggler collapsed"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarsExampleDefault"
-          aria-controls="navbarsExampleDefault"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          onClick={() => {
-            setMobileNavToggle(!mobileNavToggle);
-          }}
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button> */}
-
-        {/* <div
-          className={`collapse navbar-collapse ${
-            mobileNavToggle ? "show" : ""
-          }`}
-          id="navbarsExampleDefault"
-        >
-          <ul className="navbar-nav ml-40 flex-md-row justify-content-end">
-            <li className="nav-item px-md-1 mr-md-1">
-              <Link to="/home" className="nav-link text-right">
-                Home <span className="sr-only">(current)</span>
-              </Link>
-            </li>
-          </ul>
-          <div className="d-md-none">
-            <NavActions />
-          </div>
-        </div> */}
+        <NavActions />
       </NavWrapper>
       <CategoryStickyBar />
-      
     </div>
   );
 };

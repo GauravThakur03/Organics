@@ -15,8 +15,8 @@ export function loadCategories() {
     });
 }
 
-export function loadOrders() {
-  const endPoint = `${API_HOST}/ekart/orders`;
+export function loadOrders(phone) {
+  const endPoint = `${API_HOST}/ekart/orders/${phone}`;
 
   return fetch(endPoint)
     .then((response) => {
@@ -102,7 +102,7 @@ export function getOtp(phone) {
 }
 
 export function loadStatus(phone) {
-  const endPoint = `${API_HOST}/ekart/getstatus/${phone}`;
+  const endPoint = `${API_HOST}/ekart/orders/${phone}`;
   return fetch(endPoint)
     .then((response) => {
       if (response.ok) {

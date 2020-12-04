@@ -23,12 +23,15 @@ const NavActions = () => {
           </span>
         </button>
       </Link>
-      <Link to="orders">
-        <button className="btn btn-success mr-2">
-          {/* <span className="mr-2 d-none d-md-inline">Track Order</span> */}
-          <i className="fas fa-truck" title="Track Order"></i>
-        </button>
-      </Link>
+      {user && user?.name ? (
+        <Link to="orders">
+          <button className="btn btn-success mr-2">
+            {/* <span className="mr-2 d-none d-md-inline">Track Order</span> */}
+            <i className="fas fa-truck" title="Track Order"></i>
+          </button>
+        </Link>
+      ) : null}
+
       <Link to="cart">
         <button className="btn btn-success mr-2">
           {/* <span className="mr-2  d-none d-md-inline">My Cart</span> */}
@@ -37,7 +40,7 @@ const NavActions = () => {
       </Link>
 
       {user?.name ? (
-          <UserMenu title={`Welcome, ${user.name}`} />
+        <UserMenu title={`Welcome, ${user.name}`} />
       ) : (
         <button
           className="btn btn-success mr-2"

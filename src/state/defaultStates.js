@@ -6,4 +6,4 @@ export const default_selected_cat =  {
     products: [],
   }
 
-  export const default_delivery_location_value = "Choose delivery location";
+  export const default_delivery_location_value = "Check delivery area";

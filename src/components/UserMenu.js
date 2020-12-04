@@ -9,8 +9,9 @@ import MenuList from "@material-ui/core/MenuList";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { useDispatch } from "react-redux";
-import {SET_USER} from "../actionTypes";
-import {defaultUserObject} from "../action-creator/organic"
+import { SET_USER } from "../actionTypes";
+import { defaultUserObject } from "../action-creator/organic";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,7 +26,7 @@ export default function UserMenu(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const handleToggle = () => {
@@ -97,6 +98,7 @@ export default function UserMenu(props) {
                         type: SET_USER,
                         user: defaultUserObject,
                       });
+                      history.push("/home");
                       handleClose(event);
                     }}
                   >

@@ -2,21 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { cartTotal } from "../../utils";
 import { useSelector } from "react-redux";
-import CheckDeliveryArea from "./CheckDeliveryArea";
 import { default_delivery_location_value } from "../../state/defaultStates";
 
-const CartTotals = ({
-  values,
-  history,
-  items,
-  clearCart,
-  isServiceable,
-  setIsServiceableArea,
-}) => {
+const CartTotals = ({ items, clearCart }) => {
   const total = cartTotal(items);
   const deliveryLocation = useSelector(
     (state) => state.fruits.deliveryLocation
   );
+
+  const user = useSelector((state) => state.fruits.user);
 
   const isDeliveryLocation = () => {
     if (
@@ -39,24 +33,32 @@ const CartTotals = ({
             <span className="text-title">total: &#8377;</span>
             <strong>{total}</strong>
           </h5>
+
+          {!isDeliveryLocation() ? (
+            <p className="text-decoration-none text-danger">
+              {default_delivery_location_value}
+            </p>
+          ) : null}
+
+          {!user?.name ? (
+            <p className="text-decoration-none text-danger">
+              Please login with your registered mobile number to proceed.
+            </p>
+          ) : null}
+
           <Link to="/checkout">
             <button
               className={
-                isDeliveryLocation()
+                isDeliveryLocation() && user?.name
                   ? "btn btn-outline-success text-uppercase mb-3 mt-2 px-5"
                   : "btn btn-outline-disabled border border-disabled text-uppercase mb-3 mt-2 px-5"
               }
               type="button"
-              disabled={!isDeliveryLocation()}
+              disabled={!isDeliveryLocation() || !user?.name}
             >
               Checkout
             </button>
           </Link>
-          {!isDeliveryLocation() ? (
-            <p className="text-decoration-none text-muted">
-              {default_delivery_location_value}
-            </p>
-          ) : null}
 
           <Link to="/home">
             <button

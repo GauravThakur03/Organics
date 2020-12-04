@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { loadAreas } from "../../services/organic";
 import { Field } from "formik";
+
 const Address = () => {
+  const [cities, setCities] = useState([]);
+  useEffect(() => {
+    loadAreas().then((res) => {
+      const { deliveryArea } = res;
+      setCities(deliveryArea);
+    });
+  }, []);
   return (
     <>
       <h4 className="mb-3">Delivery address</h4>
@@ -66,8 +75,9 @@ const Address = () => {
             required
           >
             <option value="">Choose...</option>
-            <option value="Hyderabad">Hyderabad</option>
-            <option value="Indore">Indore</option>
+            {cities.map((city, i) => (
+              <option value={city.city}>{city.city}</option>
+            ))}
           </Field>
           <div className="invalid-feedback">Please select a valid city.</div>
         </div>

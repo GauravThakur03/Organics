@@ -78,9 +78,9 @@ export function removeFromCart(prodID) {
   };
 }
 
-export function orders() {
+export function orders(phone) {
   return (dispatch) => {
-    return loadOrders()
+    return loadOrders(phone)
       .then(({ orders }) => {
         dispatch({
           type: SET_ORDERS,
@@ -165,9 +165,9 @@ export function generateOrder(order, phone) {
   };
 }
 
-export function status() {
+export function status(phone) {
   return (dispatch) => {
-    return loadStatus(arguments[1])
+    return loadStatus(phone)
       .then(({ data }) => {
         dispatch({
           type: SET_STATUS,

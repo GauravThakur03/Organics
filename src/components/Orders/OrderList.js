@@ -5,7 +5,7 @@ const OrderList = ({ orders }) => {
   return (
     <div className="container-fluid">
       {orders.map((item) => {
-        return <OrderItem key={item.id} order={item} />;
+        return <OrderItem key={item.orderID} order={item} />;
       })}
     </div>
   );
