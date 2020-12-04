@@ -88,7 +88,6 @@ export function callLoginApi(data) {
 
 export function getOtp(phone) {
   const endPoint = `${API_HOST}/ekart/getotp/${phone}`;
-  console.log(endPoint);
   return fetch(endPoint)
     .then((response) => {
       if (response.ok) {

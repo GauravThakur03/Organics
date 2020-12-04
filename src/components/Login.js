@@ -111,7 +111,8 @@ const Login = () => {
                 : "btn btn-light w-100"
             }
             disabled={!isValidMobileNumber}
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
               setOtpBtnClicked(true);
               getOtp(multipleValues.userName).then((res) => {
                 setOtpSent(res.otp);
