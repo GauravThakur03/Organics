@@ -7,11 +7,11 @@ import { useSelector, useDispatch } from "react-redux";
 
 const Orders = () => {
   const dispatch = useDispatch();
-  const orderList = useSelector((state) => state.fruits.orders);
+  const orderList = useSelector((state) => state.fruits.status);
   const user = useSelector((state) => state.fruits.user);
 
   useEffect(() => {
-    dispatch(orders(user.phone));
+    dispatch(status(user.phone));
   }, []);
   return (
     <div className="container min-height py-4">

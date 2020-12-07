@@ -101,7 +101,7 @@ export function getOtp(phone) {
 }
 
 export function loadStatus(phone) {
-  const endPoint = `${API_HOST}/ekart/orders/${phone}`;
+  const endPoint = `${API_HOST}/ekart/getstatus/${phone}`;
   return fetch(endPoint)
     .then((response) => {
       if (response.ok) {

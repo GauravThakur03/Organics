@@ -19,7 +19,7 @@ import {
   processOrder,
   loadStatus,
   callLoginApi,
-  callRegisterApi
+  callRegisterApi,
 } from "../services/organic";
 
 export function categories() {
@@ -168,10 +168,10 @@ export function generateOrder(order, phone) {
 export function status(phone) {
   return (dispatch) => {
     return loadStatus(phone)
-      .then(({ data }) => {
+      .then(({ orders }) => {
         dispatch({
           type: SET_STATUS,
-          status: data || [],
+          status: orders || [],
         });
       })
       .catch((error) => {

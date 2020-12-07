@@ -14,7 +14,7 @@ const Fruits = t.struct({
     tracking: t.list(Track),
     orders: t.list(Order),
     user:User,
-    status:t.list(Status),
+    status:t.list(Order),
     deliveryLocation:DeliveryLocation
 }, 'Fruits');
 
