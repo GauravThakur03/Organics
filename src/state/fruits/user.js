@@ -2,7 +2,7 @@ import t from "tcomb";
 
 const User = t.struct(
   {
-    phone: t.String,
+    mobile: t.String,
     name: t.String,
     email: t.String,
     address1: t.String,

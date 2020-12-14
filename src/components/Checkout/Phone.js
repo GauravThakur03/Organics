@@ -8,7 +8,7 @@ const Phone = () => {
       <Field
         type="text"
         maxLength="10"
-        name="phone"
+        name="mobile"
         className="form-control mb-2 mr-sm-2 mb-sm-0"
         id="phoneNum"
         required

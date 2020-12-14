@@ -20,7 +20,7 @@ class Checkout extends Component {
   onFormChange(e) {
     const fieldName = e.target.name;
     const val = e.target.value;
-    if (fieldName === "phone" && val && !this.props.user.phone) {
+    if (fieldName === "phone" && val && !this.props.user.mobile) {
       if (val.match(/\d/g).length === 10) {
         this.props.loadUser(val);
         this.setState({phone: val});

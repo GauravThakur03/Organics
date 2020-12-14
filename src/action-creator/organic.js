@@ -94,7 +94,7 @@ export function orders(phone) {
 }
 
 export const defaultUserObject = {
-  phone: "",
+  mobile: "",
   name: "",
   address1: "",
   address2: "",

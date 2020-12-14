@@ -76,7 +76,7 @@ const Address = () => {
           >
             <option value="">Choose...</option>
             {cities.map((city, i) => (
-              <option value={city.city}>{city.city}</option>
+              <option value={city.city} key={i}>{city.city}</option>
             ))}
           </Field>
           <div className="invalid-feedback">Please select a valid city.</div>

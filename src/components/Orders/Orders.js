@@ -11,7 +11,7 @@ const Orders = () => {
   const user = useSelector((state) => state.fruits.user);
 
   useEffect(() => {
-    dispatch(status(user.phone));
+    dispatch(status(user.mobile));
   }, []);
   return (
     <div className="container min-height py-4">
