@@ -15,7 +15,7 @@ class Checkout extends Component {
     this.onFormChange = this.onFormChange.bind(this);
   }
   componentDidMount() {
-    this.props.loadOrders();
+    this.props.loadOrders(this.props?.user?.mobile);
   }
   onFormChange(e) {
     const fieldName = e.target.name;
@@ -31,7 +31,6 @@ class Checkout extends Component {
   }
   render() {
     const total = cartTotal(this.props.cart.cartItems);
-    console.log(this.props.user);
     return (
       <div className="container">
         <div className="row py-5">

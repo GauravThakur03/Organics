@@ -8,7 +8,6 @@ class Home extends Component {
   componentDidMount() {
     this.props.loadCategories();
     let user = localStorage.getItem("mamidikayaluUser");
-    console.log(user);
     if (user) {
       this.props.setUser(JSON.parse(user));
     }

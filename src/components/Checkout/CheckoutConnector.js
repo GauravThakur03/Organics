@@ -13,8 +13,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    loadOrders: () => {
-      dispatch(orders(dispatch));
+    loadOrders: (phone) => {
+      dispatch(orders(phone));
     },
     loadUser: (phone) => {
       dispatch(user(dispatch, phone));
