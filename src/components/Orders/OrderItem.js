@@ -6,7 +6,6 @@ const OrderItem = ({ order }) => {
     status,
     amount,
     address1,
-    items = [],
     city,
   } = order;
 
@@ -17,7 +16,7 @@ const OrderItem = ({ order }) => {
         {orderID}
       </div>
       <div className="col-10 mx-auto col-lg-2">
-        {items.map((item) => item.prodName).toString()}
+        {prodName}
       </div>
       <div className="col-10 mx-auto col-lg-2">
         <span className="d-lg-none">total: </span>&#8377; {amount}

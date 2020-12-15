@@ -169,10 +169,10 @@ export function generateOrder(order, phone) {
 export function status(phone) {
   return (dispatch) => {
     return loadStatus(phone)
-      .then(({ orders }) => {
+      .then(({ data }) => {
         dispatch({
           type: SET_STATUS,
-          status: orders || [],
+          status: data || [],
         });
       })
       .catch((error) => {
